@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SALONBELLEZA.SHARED")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+594b87615daf4e04848b1a64487e5c9ec9a4db15")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ed34554ddea0751870a1a0dc3966fab23a5a4fd")]
 [assembly: System.Reflection.AssemblyProductAttribute("SALONBELLEZA.SHARED")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SALONBELLEZA.SHARED")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

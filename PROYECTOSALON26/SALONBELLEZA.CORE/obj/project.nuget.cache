@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "95l4oRXJdo8=",
+  "dgSpecHash": "1LaxLoH5Zls=",
   "success": true,
-  "projectFilePath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
+  "projectFilePath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alejo\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\Alejo\\.nuget\\packages\\microsoft.codecoverage\\17.14.1\\microsoft.codecoverage.17.14.1.nupkg.sha512",
@@ -19,15 +19,5 @@
     "C:\\Users\\Alejo\\.nuget\\packages\\xunit.extensibility.execution\\2.9.3\\xunit.extensibility.execution.2.9.3.nupkg.sha512",
     "C:\\Users\\Alejo\\.nuget\\packages\\xunit.runner.visualstudio\\3.1.4\\xunit.runner.visualstudio.3.1.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json.",
-      "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
-      "warningLevel": 1,
-      "filePath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }

@@ -920,11 +920,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj",
+      "projectUniqueName": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj",
       "projectName": "SALONBELLEZA.TEST",
-      "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj",
+      "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj",
       "packagesPath": "C:\\Users\\Alejo\\.nuget\\packages\\",
-      "outputPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\obj\\",
+      "outputPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1276,13 +1276,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

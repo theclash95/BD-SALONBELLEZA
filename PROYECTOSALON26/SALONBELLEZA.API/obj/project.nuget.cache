@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W2UOBTqrH8U=",
+  "dgSpecHash": "A0/4iSjcB9c=",
   "success": true,
-  "projectFilePath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\SALONBELLEZA.API.csproj",
+  "projectFilePath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\SALONBELLEZA.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alejo\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\Alejo\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.9\\microsoft.aspnetcore.openapi.10.0.9.nupkg.sha512",
@@ -23,13 +23,16 @@
   ],
   "logs": [
     {
-      "code": "NU1900",
+      "code": "NU1903",
       "level": "Warning",
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json.",
-      "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\SALONBELLEZA.API.csproj",
+      "message": "El paquete \"Microsoft.OpenApi\" 2.0.0 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
+      "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\SALONBELLEZA.API.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\SALONBELLEZA.API.csproj",
-      "targetGraphs": []
+      "filePath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\SALONBELLEZA.API.csproj",
+      "libraryId": "Microsoft.OpenApi",
+      "targetGraphs": [
+        "net10.0"
+      ]
     }
   ]
 }

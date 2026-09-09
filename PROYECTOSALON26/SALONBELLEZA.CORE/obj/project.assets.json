@@ -949,11 +949,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
+      "projectUniqueName": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
       "projectName": "SALONBELLEZA.CORE",
-      "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
+      "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
       "packagesPath": "C:\\Users\\Alejo\\.nuget\\packages\\",
-      "outputPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\obj\\",
+      "outputPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -976,11 +976,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.SHARED\\SALONBELLEZA.SHARED.csproj": {
-              "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.SHARED\\SALONBELLEZA.SHARED.csproj"
+            "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.SHARED\\SALONBELLEZA.SHARED.csproj": {
+              "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.SHARED\\SALONBELLEZA.SHARED.csproj"
             },
-            "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj": {
-              "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj"
+            "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj": {
+              "projectPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\BD-SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj"
             }
           }
         }
@@ -1294,13 +1294,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error al obtener los datos de vulnerabilidad del paquete: No se puede cargar el índice de servicio del origen https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }
