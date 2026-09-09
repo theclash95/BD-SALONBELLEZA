@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "SALONBELLEZA.CORE/1.0.0": {
+        "dependencies": {
+          "SALONBELLEZA.INFRASTRUCTURE": "1.0.0"
+        },
+        "runtime": {
+          "SALONBELLEZA.CORE.dll": {}
+        }
+      },
+      "SALONBELLEZA.INFRASTRUCTURE/1.0.0": {
+        "runtime": {
+          "SALONBELLEZA.INFRASTRUCTURE.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SALONBELLEZA.CORE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SALONBELLEZA.INFRASTRUCTURE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

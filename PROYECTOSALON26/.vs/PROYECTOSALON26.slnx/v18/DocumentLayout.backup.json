@@ -1,0 +1,618 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1000F9C7-067F-3DA5-006D-DBCC2360F855}|SALONBELLEZA.API\\SALONBELLEZA.API.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.api\\salonbelleza.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1000F9C7-067F-3DA5-006D-DBCC2360F855}|SALONBELLEZA.API\\SALONBELLEZA.API.csproj|solutionrelative:salonbelleza.api\\salonbelleza.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBC2DFDC-F599-2088-F7A4-E438BA0475A9}|SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.test\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBC2DFDC-F599-2088-F7A4-E438BA0475A9}|SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj|solutionrelative:salonbelleza.test\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBC2DFDC-F599-2088-F7A4-E438BA0475A9}|SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.test\\testconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBC2DFDC-F599-2088-F7A4-E438BA0475A9}|SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj|solutionrelative:salonbelleza.test\\testconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBC2DFDC-F599-2088-F7A4-E438BA0475A9}|SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.test\\testregistrarconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBC2DFDC-F599-2088-F7A4-E438BA0475A9}|SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj|solutionrelative:salonbelleza.test\\testregistrarconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBC2DFDC-F599-2088-F7A4-E438BA0475A9}|SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.test\\salonbelleza.test.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CBC2DFDC-F599-2088-F7A4-E438BA0475A9}|SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj|solutionrelative:salonbelleza.test\\salonbelleza.test.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7353EC81-9DCF-A3E1-99FE-94A6D784E6AB}|SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.infrastructure\\contexto\\archivolog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7353EC81-9DCF-A3E1-99FE-94A6D784E6AB}|SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj|solutionrelative:salonbelleza.infrastructure\\contexto\\archivolog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7353EC81-9DCF-A3E1-99FE-94A6D784E6AB}|SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.infrastructure\\extensionesservicios\\extensionesservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7353EC81-9DCF-A3E1-99FE-94A6D784E6AB}|SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj|solutionrelative:salonbelleza.infrastructure\\extensionesservicios\\extensionesservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7353EC81-9DCF-A3E1-99FE-94A6D784E6AB}|SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.infrastructure\\salonbelleza.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7353EC81-9DCF-A3E1-99FE-94A6D784E6AB}|SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj|solutionrelative:salonbelleza.infrastructure\\salonbelleza.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1000F9C7-067F-3DA5-006D-DBCC2360F855}|SALONBELLEZA.API\\SALONBELLEZA.API.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1000F9C7-067F-3DA5-006D-DBCC2360F855}|SALONBELLEZA.API\\SALONBELLEZA.API.csproj|solutionrelative:salonbelleza.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\interfaces\\imyconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\interfaces\\imyconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1000F9C7-067F-3DA5-006D-DBCC2360F855}|SALONBELLEZA.API\\SALONBELLEZA.API.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1000F9C7-067F-3DA5-006D-DBCC2360F855}|SALONBELLEZA.API\\SALONBELLEZA.API.csproj|solutionrelative:salonbelleza.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7353EC81-9DCF-A3E1-99FE-94A6D784E6AB}|SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.infrastructure\\contexto\\myconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7353EC81-9DCF-A3E1-99FE-94A6D784E6AB}|SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj|solutionrelative:salonbelleza.infrastructure\\contexto\\myconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\categoria_producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\categoria_producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\servicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\servicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\salon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\salon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\pago_membresia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\pago_membresia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\detalleventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\detalleventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\pago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\pago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\movimiento_stock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\movimiento_stock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\membresia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\membresia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\detalleturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\detalleturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\detallecompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\detallecompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\compra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\cliente_membresia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\cliente_membresia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\entidades\\categoria_servicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\entidades\\categoria_servicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{135DADE4-80D4-58F8-9884-ADBB6B90FC51}|SALONBELLEZA.SHARED\\SALONBELLEZA.SHARED.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.shared\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{135DADE4-80D4-58F8-9884-ADBB6B90FC51}|SALONBELLEZA.SHARED\\SALONBELLEZA.SHARED.csproj|solutionrelative:salonbelleza.shared\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1000F9C7-067F-3DA5-006D-DBCC2360F855}|SALONBELLEZA.API\\SALONBELLEZA.API.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.api\\controllers\\personacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1000F9C7-067F-3DA5-006D-DBCC2360F855}|SALONBELLEZA.API\\SALONBELLEZA.API.csproj|solutionrelative:salonbelleza.api\\controllers\\personacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|d:\\bdsalon\\base corregida salon belleza\\salonbelleza\\proyectosalon26\\salonbelleza.core\\salonbelleza.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{9B022F7A-F09D-2C4B-D3AC-B5CB9E14CF69}|SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj|solutionrelative:salonbelleza.core\\salonbelleza.core.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TestRegistrarConexion.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\TestRegistrarConexion.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.TEST\\TestRegistrarConexion.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\TestRegistrarConexion.cs",
+              "RelativeToolTip": "SALONBELLEZA.TEST\\TestRegistrarConexion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T23:36:08.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TestConexion.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\TestConexion.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.TEST\\TestConexion.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\TestConexion.cs",
+              "RelativeToolTip": "SALONBELLEZA.TEST\\TestConexion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T23:35:48.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ArchivoLog.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.INFRASTRUCTURE\\Contexto\\ArchivoLog.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.INFRASTRUCTURE\\Contexto\\ArchivoLog.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.INFRASTRUCTURE\\Contexto\\ArchivoLog.cs",
+              "RelativeToolTip": "SALONBELLEZA.INFRASTRUCTURE\\Contexto\\ArchivoLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T23:33:17.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ExtensionesServicio.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.INFRASTRUCTURE\\ExtensionesServicios\\ExtensionesServicio.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.INFRASTRUCTURE\\ExtensionesServicios\\ExtensionesServicio.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.INFRASTRUCTURE\\ExtensionesServicios\\ExtensionesServicio.cs",
+              "RelativeToolTip": "SALONBELLEZA.INFRASTRUCTURE\\ExtensionesServicios\\ExtensionesServicio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T23:21:09.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.TEST\\UnitTest1.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\UnitTest1.cs",
+              "RelativeToolTip": "SALONBELLEZA.TEST\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-28T22:59:51.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SALONBELLEZA.API.csproj",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\SALONBELLEZA.API.csproj",
+              "RelativeDocumentMoniker": "SALONBELLEZA.API\\SALONBELLEZA.API.csproj",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\SALONBELLEZA.API.csproj",
+              "RelativeToolTip": "SALONBELLEZA.API\\SALONBELLEZA.API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-28T23:10:36.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\appsettings.json",
+              "RelativeDocumentMoniker": "SALONBELLEZA.API\\appsettings.json",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\appsettings.json",
+              "RelativeToolTip": "SALONBELLEZA.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-04T23:12:59.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "SALONBELLEZA.API\\appsettings.Development.json",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\appsettings.Development.json",
+              "RelativeToolTip": "SALONBELLEZA.API\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-04T23:15:30.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IMyConexion.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Interfaces\\IMyConexion.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Interfaces\\IMyConexion.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Interfaces\\IMyConexion.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Interfaces\\IMyConexion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T22:31:32.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SALONBELLEZA.TEST.csproj",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj",
+              "RelativeDocumentMoniker": "SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj",
+              "RelativeToolTip": "SALONBELLEZA.TEST\\SALONBELLEZA.TEST.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-09-03T01:20:42.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MyConexion.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.INFRASTRUCTURE\\Contexto\\MyConexion.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.INFRASTRUCTURE\\Contexto\\MyConexion.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.INFRASTRUCTURE\\Contexto\\MyConexion.cs",
+              "RelativeToolTip": "SALONBELLEZA.INFRASTRUCTURE\\Contexto\\MyConexion.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-04T22:40:33.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "proveedor.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\proveedor.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\proveedor.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\proveedor.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\proveedor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:43:56.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SALONBELLEZA.INFRASTRUCTURE.csproj",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj",
+              "RelativeDocumentMoniker": "SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj",
+              "RelativeToolTip": "SALONBELLEZA.INFRASTRUCTURE\\SALONBELLEZA.INFRASTRUCTURE.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-28T22:58:00.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "salon.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\salon.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\salon.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\salon.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\salon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:44:05.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "servicio.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\servicio.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\servicio.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\servicio.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\servicio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:44:17.023Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "categoria_producto.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\categoria_producto.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\categoria_producto.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\categoria_producto.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\categoria_producto.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAewAsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:39:24.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "turno.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\turno.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\turno.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\turno.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\turno.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:44:30.24Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "venta.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\venta.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\venta.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\venta.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\venta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:44:44.172Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "producto.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\producto.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\producto.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\producto.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\producto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:43:44.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "persona.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\persona.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\persona.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\persona.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\persona.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:43:31.239Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "pago_membresia.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\pago_membresia.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\pago_membresia.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\pago_membresia.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\pago_membresia.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:43:16.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "pago.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\pago.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\pago.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\pago.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\pago.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:42:45.284Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "movimiento_stock.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\movimiento_stock.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\movimiento_stock.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\movimiento_stock.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\movimiento_stock.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:42:30.933Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "membresia.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\membresia.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\membresia.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\membresia.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\membresia.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:42:19.262Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "factura.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\factura.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\factura.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\factura.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\factura.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:42:01.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "empleado.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\empleado.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\empleado.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\empleado.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\empleado.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:41:50.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "detalleventa.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\detalleventa.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\detalleventa.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\detalleventa.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\detalleventa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:41:38.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "detalleturno.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\detalleturno.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\detalleturno.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\detalleturno.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\detalleturno.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:41:24.968Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "detallecompra.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\detallecompra.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\detallecompra.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\detallecompra.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\detallecompra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:41:08.577Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "compra.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\compra.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\compra.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\compra.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\compra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:40:54.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "cliente_membresia.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\cliente_membresia.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\cliente_membresia.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\cliente_membresia.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\cliente_membresia.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:40:28.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "cliente.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\cliente.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\cliente.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\cliente.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\cliente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:40:09.636Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "categoria_servicio.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\categoria_servicio.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\Entidades\\categoria_servicio.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\Entidades\\categoria_servicio.cs",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\Entidades\\categoria_servicio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-03T01:39:51.27Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "PersonaController.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\Controllers\\PersonaController.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.API\\Controllers\\PersonaController.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.API\\Controllers\\PersonaController.cs",
+              "RelativeToolTip": "SALONBELLEZA.API\\Controllers\\PersonaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-28T23:18:03.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.SHARED\\Class1.cs",
+              "RelativeDocumentMoniker": "SALONBELLEZA.SHARED\\Class1.cs",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.SHARED\\Class1.cs",
+              "RelativeToolTip": "SALONBELLEZA.SHARED\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-28T23:01:40.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "SALONBELLEZA.CORE.csproj",
+              "DocumentMoniker": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
+              "RelativeDocumentMoniker": "SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
+              "ToolTip": "D:\\BDSALON\\BASE CORREGIDA SALON BELLEZA\\SALONBELLEZA\\PROYECTOSALON26\\SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
+              "RelativeToolTip": "SALONBELLEZA.CORE\\SALONBELLEZA.CORE.csproj",
+              "ViewState": "AgIAAAsAAAD+/////79dwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-28T22:53:06.445Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
