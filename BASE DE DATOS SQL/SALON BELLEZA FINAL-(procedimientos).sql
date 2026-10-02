@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS salonbellezabd
 CHARACTER SET utf8mb4
-COLLATEinformation_schema utf8mb4_unicode_ci;
+COLLATE utf8mb4_unicode_ci;
 
 USE salonbellezabd;
 
@@ -376,3 +376,311 @@ CREATE TABLE Salon (
     fecha_alta DATE
 );
 
+
+-- =========================================================
+-- PROCEDIMIENTOS ALMACENADOS
+-- =========================================================
+
+DELIMITER //
+
+DROP PROCEDURE IF EXISTS RegistrarCliente //
+CREATE PROCEDURE RegistrarCliente (
+    IN p_dni VARCHAR(10),
+    IN p_nombre VARCHAR(50),
+    IN p_apellido VARCHAR(50),
+    IN p_telefono VARCHAR(20),
+    IN p_email VARCHAR(100),
+    IN p_direccion VARCHAR(100),
+    IN p_categoria VARCHAR(50)
+)
+BEGIN
+    DECLARE v_id_persona INT;
+
+    START TRANSACTION;
+        INSERT INTO Personas (dni, nombre, apellido, telefono, email, direccion, activo, fecha_alta)
+        VALUES (p_dni, p_nombre, p_apellido, p_telefono, p_email, p_direccion, TRUE, CURDATE());
+        
+        SET v_id_persona = LAST_INSERT_ID();
+
+        INSERT INTO Clientes (id_persona, categoria_cliente, fecha_registro, estado)
+        VALUES (v_id_persona, p_categoria, CURDATE(), 'ACTIVO');
+    COMMIT;
+END //
+
+DROP PROCEDURE IF EXISTS RegistrarEmpleado //
+CREATE PROCEDURE RegistrarEmpleado (
+    IN p_dni VARCHAR(10),
+    IN p_nombre VARCHAR(50),
+    IN p_apellido VARCHAR(50),
+    IN p_telefono VARCHAR(20),
+    IN p_email VARCHAR(100),
+    IN p_direccion VARCHAR(100),
+    IN p_tipo_empleado VARCHAR(50)
+)
+BEGIN
+    DECLARE v_id_persona INT;
+
+    START TRANSACTION;
+        INSERT INTO Personas (dni, nombre, apellido, telefono, email, direccion, activo, fecha_alta)
+        VALUES (p_dni, p_nombre, p_apellido, p_telefono, p_email, p_direccion, TRUE, CURDATE());
+        
+        SET v_id_persona = LAST_INSERT_ID();
+
+        INSERT INTO Empleados (id_persona, tipo_empleado, fecha_ingreso, estado)
+        VALUES (v_id_persona, p_tipo_empleado, CURDATE(), 'ACTIVO');
+    COMMIT;
+END //
+
+DROP PROCEDURE IF EXISTS RegistrarCategoriaProducto //
+CREATE PROCEDURE RegistrarCategoriaProducto (
+    IN p_nombre VARCHAR(50),
+    IN p_descripcion VARCHAR(255)
+)
+BEGIN
+    INSERT INTO Categorias_Producto (nombre, descripcion, activo)
+    VALUES (p_nombre, p_descripcion, TRUE);
+END //
+
+DROP PROCEDURE IF EXISTS RegistrarProducto //
+CREATE PROCEDURE RegistrarProducto (
+    IN p_id_categoria INT,
+    IN p_codigo VARCHAR(50),
+    IN p_nombre VARCHAR(100),
+    IN p_descripcion TEXT,
+    IN p_precio_costo DECIMAL(10,2),
+    IN p_precio_venta DECIMAL(10,2),
+    IN p_stock INT,
+    IN p_stock_minimo INT
+)
+BEGIN
+    INSERT INTO Productos (
+        id_categoria_producto, codigo, nombre, descripcion, 
+        precio_costo, precio_venta, stock_actual, stock_minimo, 
+        estado, fecha_alta
+    )
+    VALUES (
+        p_id_categoria, p_codigo, p_nombre, p_descripcion, 
+        p_precio_costo, p_precio_venta, p_stock, p_stock_minimo, 
+        'ACTIVO', CURDATE()
+    );
+END //
+
+DROP PROCEDURE IF EXISTS ActualizarStockProducto //
+CREATE PROCEDURE ActualizarStockProducto (
+    IN p_id_producto INT,
+    IN p_cantidad INT,
+    IN p_tipo_movimiento VARCHAR(50),
+    IN p_motivo VARCHAR(255)
+)
+BEGIN
+    DECLARE v_stock_actual INT;
+    DECLARE v_nuevo_stock INT;
+
+    SELECT stock_actual INTO v_stock_actual FROM Productos WHERE id_producto = p_id_producto;
+
+    IF p_tipo_movimiento = 'INGRESO' THEN
+        SET v_nuevo_stock = v_stock_actual + p_cantidad;
+    ELSE
+        SET v_nuevo_stock = v_stock_actual - p_cantidad;
+    END IF;
+
+    START TRANSACTION;
+        UPDATE Productos SET stock_actual = v_nuevo_stock WHERE id_producto = p_id_producto;
+
+        INSERT INTO Movimiento_Stock (
+            id_producto, tipo_movimiento, cantidad, fecha_hora, motivo, stock_anterior, stock_posterior
+        )
+        VALUES (
+            p_id_producto, p_tipo_movimiento, p_cantidad, NOW(), p_motivo, v_stock_actual, v_nuevo_stock
+        );
+    COMMIT;
+END //
+
+DROP PROCEDURE IF EXISTS RegistrarProveedor //
+CREATE PROCEDURE RegistrarProveedor (
+    IN p_razon_social VARCHAR(100),
+    IN p_cuit VARCHAR(20),
+    IN p_telefono VARCHAR(20),
+    IN p_email VARCHAR(100),
+    IN p_direccion VARCHAR(100)
+)
+BEGIN
+    INSERT INTO Proveedores (razon_social, cuit, telefono, email, direccion, activo)
+    VALUES (p_razon_social, p_cuit, p_telefono, p_email, p_direccion, 'ACTIVO');
+END //
+
+DROP PROCEDURE IF EXISTS RegistrarCompra //
+CREATE PROCEDURE RegistrarCompra (
+    IN p_id_proveedor INT,
+    IN p_id_producto INT,
+    IN p_cantidad INT,
+    IN p_precio_costo DECIMAL(10,2),
+    IN p_observacion VARCHAR(255)
+)
+BEGIN
+    DECLARE v_id_compra INT;
+    DECLARE v_subtotal DECIMAL(10,2);
+    DECLARE v_stock_actual INT;
+
+    SET v_subtotal = p_cantidad * p_precio_costo;
+
+    START TRANSACTION;
+        INSERT INTO Compras (id_proveedor, fecha_hora, estado, subtotal, total, observacion)
+        VALUES (p_id_proveedor, NOW(), 'COMPLETADO', v_subtotal, v_subtotal, p_observacion);
+        SET v_id_compra = LAST_INSERT_ID();
+
+        INSERT INTO Detalle_Compra (id_compra, id_producto, cantidad, precio_costo)
+        VALUES (v_id_compra, p_id_producto, p_cantidad, p_precio_costo);
+
+        SELECT stock_actual INTO v_stock_actual FROM Productos WHERE id_producto = p_id_producto;
+        
+        UPDATE Productos 
+        SET stock_actual = stock_actual + p_cantidad,
+            precio_costo = p_precio_costo
+        WHERE id_producto = p_id_producto;
+
+        INSERT INTO Movimiento_Stock (id_producto, tipo_movimiento, cantidad, fecha_hora, motivo, stock_anterior, stock_posterior)
+        VALUES (p_id_producto, 'INGRESO', p_cantidad, NOW(), 'Compra a Proveedor', v_stock_actual, v_stock_actual + p_cantidad);
+    COMMIT;
+END //
+
+DROP PROCEDURE IF EXISTS RegistrarServicio //
+CREATE PROCEDURE RegistrarServicio (
+    IN p_id_categoria INT,
+    IN p_nombre VARCHAR(100),
+    IN p_descripcion TEXT,
+    IN p_precio DECIMAL(10,2),
+    IN p_duracion INT
+)
+BEGIN
+    INSERT INTO Servicios (id_categoria_servicio, nombre, descripcion, precio, duracion_minuto, estado)
+    VALUES (p_id_categoria, p_nombre, p_descripcion, p_precio, p_duracion, 'ACTIVO');
+END //
+
+DROP PROCEDURE IF EXISTS CrearTurno //
+CREATE PROCEDURE CrearTurno (
+    IN p_id_cliente INT,
+    IN p_id_empleado INT,
+    IN p_fecha DATE,
+    IN p_hora TIME,
+    IN p_observacion TEXT
+)
+BEGIN
+    INSERT INTO Turnos (id_cliente, id_empleado, fecha, hora, estado, observacion, fecha_creacion)
+    VALUES (p_id_cliente, p_id_empleado, p_fecha, p_hora, 'PENDIENTE', p_observacion, NOW());
+END //
+
+DROP PROCEDURE IF EXISTS AgregarServicioATurno //
+CREATE PROCEDURE AgregarServicioATurno (
+    IN p_id_turno INT,
+    IN p_id_servicio INT,
+    IN p_descuento DECIMAL(10,2)
+)
+BEGIN
+    DECLARE v_precio DECIMAL(10,2);
+    DECLARE v_subtotal DECIMAL(10,2);
+
+    SELECT precio INTO v_precio FROM Servicios WHERE id_servicio = p_id_servicio;
+    SET v_subtotal = v_precio - IFNULL(p_descuento, 0);
+
+    INSERT INTO Detalle_Turno (id_turno, id_servicio, precio_unitario, descuento, subtotal)
+    VALUES (p_id_turno, p_id_servicio, v_precio, IFNULL(p_descuento, 0), v_subtotal);
+END //
+
+DROP PROCEDURE IF EXISTS RealizarVentaProducto //
+CREATE PROCEDURE RealizarVentaProducto (
+    IN p_id_cliente INT,
+    IN p_id_producto INT,
+    IN p_cantidad INT
+)
+BEGIN
+    DECLARE v_precio DECIMAL(10,2);
+    DECLARE v_stock INT;
+    DECLARE v_id_venta INT;
+    DECLARE v_id_detalle INT;
+    DECLARE v_subtotal DECIMAL(10,2);
+
+    SELECT precio_venta, stock_actual INTO v_precio, v_stock 
+    FROM Productos WHERE id_producto = p_id_producto;
+
+    IF v_stock >= p_cantidad THEN
+        SET v_subtotal = v_precio * p_cantidad;
+
+        START TRANSACTION;
+            INSERT INTO Ventas (id_cliente, fecha_hora, tipo_venta, estado, subtotal, total)
+            VALUES (p_id_cliente, NOW(), 'PRODUCTO', 'COMPLETADO', v_subtotal, v_subtotal);
+            SET v_id_venta = LAST_INSERT_ID();
+
+            INSERT INTO Detalle_Venta (id_venta, id_producto, cantidad, precio_unitario, subtotal)
+            VALUES (v_id_venta, p_id_producto, p_cantidad, v_precio, v_subtotal);
+            SET v_id_detalle = LAST_INSERT_ID();
+
+            UPDATE Productos SET stock_actual = stock_actual - p_cantidad WHERE id_producto = p_id_producto;
+
+            INSERT INTO Movimiento_Stock (id_producto, id_detalle_venta, tipo_movimiento, cantidad, fecha_hora, motivo, stock_anterior, stock_posterior)
+            VALUES (p_id_producto, v_id_detalle, 'EGRESO', p_cantidad, NOW(), 'Venta Directa', v_stock, v_stock - p_cantidad);
+        COMMIT;
+    ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Stock insuficiente para efectuar la venta';
+    END IF;
+END //
+
+DROP PROCEDURE IF EXISTS RegistrarPago //
+CREATE PROCEDURE RegistrarPago (
+    IN p_id_venta INT,
+    IN p_monto DECIMAL(10,2),
+    IN p_metodo_pago VARCHAR(50),
+    IN p_referencia VARCHAR(100)
+)
+BEGIN
+    INSERT INTO Pagos (id_venta, fecha_pago, monto, metodo_pago, estado, referencia)
+    VALUES (p_id_venta, NOW(), p_monto, p_metodo_pago, 'APROBADO', p_referencia);
+END //
+
+DROP PROCEDURE IF EXISTS GenerarFactura //
+CREATE PROCEDURE GenerarFactura (
+    IN p_id_venta INT,
+    IN p_numero_factura VARCHAR(10),
+    IN p_tipo_comprobante VARCHAR(50)
+)
+BEGIN
+    DECLARE v_total DECIMAL(10,2);
+    DECLARE v_subtotal DECIMAL(10,2);
+    DECLARE v_descuento DECIMAL(10,2);
+
+    SELECT subtotal, descuento, total INTO v_subtotal, v_descuento, v_total
+    FROM Ventas WHERE id_venta = p_id_venta;
+
+    INSERT INTO Facturas (id_venta, numero_factura, fecha_emision, tipo_comprobante, estado, subtotal, descuento, total)
+    VALUES (p_id_venta, p_numero_factura, NOW(), p_tipo_comprobante, 'EMITIDA', v_subtotal, v_descuento, v_total);
+END //
+
+DROP PROCEDURE IF EXISTS CrearMembresia //
+CREATE PROCEDURE CrearMembresia (
+    IN p_nombre_plan VARCHAR(100),
+    IN p_descripcion TEXT,
+    IN p_costo DECIMAL(10,2),
+    IN p_duracion_dias INT,
+    IN p_descuento DECIMAL(5,2)
+)
+BEGIN
+    INSERT INTO Membresias (nombre_plan, descripcion, costo, duracion_dias, porcentaje_descuento, estado)
+    VALUES (p_nombre_plan, p_descripcion, p_costo, p_duracion_dias, p_descuento, 'ACTIVO');
+END //
+
+DROP PROCEDURE IF EXISTS AsignarMembresiaCliente //
+CREATE PROCEDURE AsignarMembresiaCliente (
+    IN p_id_cliente INT,
+    IN p_id_membresia INT,
+    IN p_observacion VARCHAR(255)
+)
+BEGIN
+    DECLARE v_duracion INT;
+    
+    SELECT duracion_dias INTO v_duracion FROM Membresias WHERE id_membresia = p_id_membresia;
+
+    INSERT INTO Cliente_Membresia (id_cliente, id_membresia, fecha_inicio, fecha_fin, estado, observacion)
+    VALUES (p_id_cliente, p_id_membresia, CURDATE(), DATE_ADD(CURDATE(), INTERVAL v_duracion DAY), 'ACTIVA', p_observacion);
+END //
+
+DELIMITER ;
