@@ -1,1 +1,1 @@
-CALL BuscarClientes('Juan');
+CALL DesactivarCliente(2);

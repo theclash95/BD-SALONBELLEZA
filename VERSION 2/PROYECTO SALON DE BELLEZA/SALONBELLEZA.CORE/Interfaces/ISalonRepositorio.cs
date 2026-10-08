@@ -30,4 +30,16 @@ public interface ISalonRepositorio
 
     Task<IEnumerable<ClienteConsulta>> BuscarClientesAsync(string termino);
 
+    Task ActualizarClienteAsync(
+    int idCliente,
+    string? dni,
+    string nombre,
+    string apellido,
+    string? telefono,
+    string? email,
+    string? direccion);
+
+    Task DesactivarClienteAsync(int idCliente);
+
+
 }

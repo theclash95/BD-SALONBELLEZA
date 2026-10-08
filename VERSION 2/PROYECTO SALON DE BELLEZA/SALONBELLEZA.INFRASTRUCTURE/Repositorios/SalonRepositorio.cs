@@ -285,6 +285,52 @@ public class SalonRepositorio : ISalonRepositorio
     }
 
 
+    public async Task ActualizarClienteAsync(
+    int idCliente,
+    string? dni,
+    string nombre,
+    string apellido,
+    string? telefono,
+    string? email,
+    string? direccion)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+
+        using var cmd = new MySqlCommand(
+            "ActualizarCliente",
+            c)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+
+        cmd.Parameters.AddWithValue("@p_id_cliente", idCliente);
+        cmd.Parameters.AddWithValue("@p_dni", dni ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@p_nombre", nombre);
+        cmd.Parameters.AddWithValue("@p_apellido", apellido);
+        cmd.Parameters.AddWithValue("@p_telefono", telefono ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@p_email", email ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@p_direccion", direccion ?? (object)DBNull.Value);
+
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+
+    public async Task DesactivarClienteAsync(int idCliente)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+
+        using var cmd = new MySqlCommand(
+            "DesactivarCliente",
+            c)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+
+        cmd.Parameters.AddWithValue("@p_id_cliente", idCliente);
+
+        await cmd.ExecuteNonQueryAsync();
+    }
+
 }
 
 

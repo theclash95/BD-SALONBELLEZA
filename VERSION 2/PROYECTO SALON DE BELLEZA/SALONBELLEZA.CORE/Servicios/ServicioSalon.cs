@@ -139,5 +139,29 @@ public class ServicioSalon
         return _repo.BuscarClientesAsync(termino);
     }
 
+    public Task ActualizarClienteAsync(
+    int idCliente,
+    string? dni,
+    string nombre,
+    string apellido,
+    string? telefono,
+    string? email,
+    string? direccion)
+    {
+        return _repo.ActualizarClienteAsync(
+            idCliente,
+            dni,
+            nombre,
+            apellido,
+            telefono,
+            email,
+            direccion);
+    }
+
+    public Task DesactivarClienteAsync(int idCliente)
+    {
+        return _repo.DesactivarClienteAsync(idCliente);
+    }
+
 
 }

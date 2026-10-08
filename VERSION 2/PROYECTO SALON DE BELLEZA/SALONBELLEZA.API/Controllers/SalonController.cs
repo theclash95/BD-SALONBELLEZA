@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using SALONBELLEZA.API.DTOs;
 using SALONBELLEZA.CORE.Entidades;
@@ -24,8 +25,37 @@ public class SalonController : ControllerBase
     }
 
     [HttpPost("clientes")]
-    public Task<IActionResult> RegistrarCliente(RegistrarClienteRequest r) =>
-        Ejecutar(()=>_servicio.RegistrarClienteAsync(new Persona{Dni=r.Dni,Nombre=r.Nombre,Apellido=r.Apellido,Telefono=r.Telefono,Email=r.Email,Direccion=r.Direccion},r.Categoria));
+    public async Task<IActionResult> RegistrarCliente(
+    RegistrarClienteRequest r,
+    [FromServices] IValidator<RegistrarClienteRequest> validator)
+    {
+        var resultado = await validator.ValidateAsync(r);
+
+        if (!resultado.IsValid)
+        {
+            var errores = resultado.Errors
+                .Select(e => e.ErrorMessage)
+                .ToList();
+
+            return BadRequest(new
+            {
+                Mensaje = "Error de validación",
+                Errores = errores
+            });
+        }
+
+        return await Ejecutar(() => _servicio.RegistrarClienteAsync(
+            new Persona
+            {
+                Dni = r.Dni,
+                Nombre = r.Nombre,
+                Apellido = r.Apellido,
+                Telefono = r.Telefono,
+                Email = r.Email,
+                Direccion = r.Direccion
+            },
+            r.Categoria));
+    }
 
     [HttpPost("empleados")]
     public Task<IActionResult> RegistrarEmpleado(RegistrarEmpleadoRequest r) =>
@@ -189,6 +219,108 @@ public class SalonController : ControllerBase
             return StatusCode(500, new
             {
                 mensaje = "Error al buscar clientes.",
+                detalle = ex.Message
+            });
+        }
+
+
+
+
+
+    }
+
+
+    [HttpPut("clientes/{idCliente:int}")]
+    public async Task<IActionResult> ActualizarCliente(
+    int idCliente,
+    [FromBody] ClienteActualizarRequest request)
+    {
+        try
+        {
+            if (idCliente <= 0)
+            {
+                return BadRequest(new
+                {
+                    mensaje = "El ID del cliente debe ser mayor que cero."
+                });
+            }
+
+            if (string.IsNullOrWhiteSpace(request.Nombre))
+            {
+                return BadRequest(new
+                {
+                    mensaje = "El nombre es obligatorio."
+                });
+            }
+
+            if (string.IsNullOrWhiteSpace(request.Apellido))
+            {
+                return BadRequest(new
+                {
+                    mensaje = "El apellido es obligatorio."
+                });
+            }
+
+            await _servicio.ActualizarClienteAsync(
+                idCliente,
+                request.Dni,
+                request.Nombre,
+                request.Apellido,
+                request.Telefono,
+                request.Email,
+                request.Direccion);
+
+            return Ok(new
+            {
+                mensaje = "Cliente actualizado correctamente."
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al actualizar el cliente.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+
+    [HttpDelete("clientes/{idCliente:int}")]
+    public async Task<IActionResult> DesactivarCliente(int idCliente)
+    {
+        try
+        {
+            if (idCliente <= 0)
+            {
+                return BadRequest(new
+                {
+                    mensaje = "El ID del cliente debe ser mayor que cero."
+                });
+            }
+
+            var cliente = await _servicio.ObtenerClientePorIdAsync(idCliente);
+
+            if (cliente == null)
+            {
+                return NotFound(new
+                {
+                    mensaje = "No se encontró el cliente."
+                });
+            }
+
+            await _servicio.DesactivarClienteAsync(idCliente);
+
+            return Ok(new
+            {
+                mensaje = "Cliente desactivado correctamente."
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al desactivar el cliente.",
                 detalle = ex.Message
             });
         }

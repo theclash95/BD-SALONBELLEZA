@@ -3,5 +3,5 @@
   <ItemGroup><PackageReference Include="MySqlConnector" Version="2.6.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.11" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.11" /></ItemGroup>
-  <ItemGroup><ProjectReference Include="..\SALONBELLEZA.CORE\SALONBELLEZA.CORE.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\SALONBELLEZA.CORE\SALONBELLEZA.CORE.csproj" /><ProjectReference Include="..\SALONBELLEZA.SHARED\SALONBELLEZA.SHARED.csproj" /></ItemGroup>
 </Project>
