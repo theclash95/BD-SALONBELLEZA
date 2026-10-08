@@ -73,6 +73,10 @@ public class SalonRepositorio : ISalonRepositorio
     public Task<int> RegistrarServicioAsync(Servicio s)=>EjecutarIdAsync("RegistrarServicio",
         ("p_id_categoria",null,s.IdCategoriaServicio),("p_nombre",null,s.Nombre),("p_descripcion",null,s.Descripcion),
         ("p_precio",null,s.Precio),("p_duracion",null,s.DuracionMinuto));
+
+
+
+
     public Task<int> CrearTurnoAsync(Turno t)=>EjecutarIdAsync("CrearTurno",
         ("p_id_cliente",null,t.IdCliente),("p_id_empleado",null,t.IdEmpleado),("p_fecha",null,t.Fecha.Date),
         ("p_hora",null,t.Hora),("p_observacion",null,t.Observacion));
@@ -100,4 +104,190 @@ public class SalonRepositorio : ISalonRepositorio
         ("p_duracion_dias",null,m.DuracionDias),("p_descuento",null,m.PorcentajeDescuento));
     public Task<int> AsignarMembresiaClienteAsync(ClienteMembresia cm)=>EjecutarIdAsync("AsignarMembresiaCliente",
         ("p_id_cliente",null,cm.IdCliente),("p_id_membresia",null,cm.IdMembresia),("p_observacion",null,cm.Observacion));
+
+    public async Task<IEnumerable<ClienteConsulta>> ObtenerClientesAsync()
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+
+        using var cmd = new MySqlCommand(
+            "ObtenerClientes",
+            c)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+
+        using var reader = await cmd.ExecuteReaderAsync();
+
+        var clientes = new List<ClienteConsulta>();
+
+        while (await reader.ReadAsync())
+        {
+            clientes.Add(new ClienteConsulta
+            {
+                IdCliente = reader.GetInt32("id_cliente"),
+                IdPersona = reader.GetInt32("id_persona"),
+
+                Dni = reader.IsDBNull(reader.GetOrdinal("dni"))
+                    ? null
+                    : reader.GetString("dni"),
+
+                Nombre = reader.GetString("nombre"),
+                Apellido = reader.GetString("apellido"),
+
+                Telefono = reader.IsDBNull(reader.GetOrdinal("telefono"))
+                    ? null
+                    : reader.GetString("telefono"),
+
+                Email = reader.IsDBNull(reader.GetOrdinal("email"))
+                    ? null
+                    : reader.GetString("email"),
+
+                Direccion = reader.IsDBNull(reader.GetOrdinal("direccion"))
+                    ? null
+                    : reader.GetString("direccion"),
+
+                CategoriaCliente = reader.IsDBNull(reader.GetOrdinal("categoria_cliente"))
+                    ? null
+                    : reader.GetString("categoria_cliente"),
+
+                FechaRegistro = reader.IsDBNull(reader.GetOrdinal("fecha_registro"))
+                    ? null
+                    : reader.GetDateTime("fecha_registro"),
+
+                Estado = reader.IsDBNull(reader.GetOrdinal("estado"))
+                    ? null
+                    : reader.GetString("estado")
+            });
+        }
+
+        return clientes;
+    }
+
+
+    public async Task<ClienteConsulta?> ObtenerClientePorIdAsync(int idCliente)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+
+        using var cmd = new MySqlCommand(
+            "ObtenerClientePorId",
+            c)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+
+        cmd.Parameters.AddWithValue("@p_id_cliente", idCliente);
+
+        using var reader = await cmd.ExecuteReaderAsync();
+
+        if (await reader.ReadAsync())
+        {
+            return new ClienteConsulta
+            {
+                IdCliente = reader.GetInt32("id_cliente"),
+                IdPersona = reader.GetInt32("id_persona"),
+
+                Dni = reader.IsDBNull(reader.GetOrdinal("dni"))
+                    ? null
+                    : reader.GetString("dni"),
+
+                Nombre = reader.GetString("nombre"),
+                Apellido = reader.GetString("apellido"),
+
+                Telefono = reader.IsDBNull(reader.GetOrdinal("telefono"))
+                    ? null
+                    : reader.GetString("telefono"),
+
+                Email = reader.IsDBNull(reader.GetOrdinal("email"))
+                    ? null
+                    : reader.GetString("email"),
+
+                Direccion = reader.IsDBNull(reader.GetOrdinal("direccion"))
+                    ? null
+                    : reader.GetString("direccion"),
+
+                CategoriaCliente = reader.IsDBNull(reader.GetOrdinal("categoria_cliente"))
+                    ? null
+                    : reader.GetString("categoria_cliente"),
+
+                FechaRegistro = reader.IsDBNull(reader.GetOrdinal("fecha_registro"))
+                    ? null
+                    : reader.GetDateTime("fecha_registro"),
+
+                Estado = reader.IsDBNull(reader.GetOrdinal("estado"))
+                    ? null
+                    : reader.GetString("estado")
+            };
+        }
+
+        return null;
+    }
+
+
+
+    public async Task<IEnumerable<ClienteConsulta>> BuscarClientesAsync(string termino)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+
+        using var cmd = new MySqlCommand(
+            "BuscarClientes",
+            c)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+
+        cmd.Parameters.AddWithValue("@p_termino", termino);
+
+        using var reader = await cmd.ExecuteReaderAsync();
+
+        var clientes = new List<ClienteConsulta>();
+
+        while (await reader.ReadAsync())
+        {
+            clientes.Add(new ClienteConsulta
+            {
+                IdCliente = reader.GetInt32("id_cliente"),
+                IdPersona = reader.GetInt32("id_persona"),
+
+                Dni = reader.IsDBNull(reader.GetOrdinal("dni"))
+                    ? null
+                    : reader.GetString("dni"),
+
+                Nombre = reader.GetString("nombre"),
+                Apellido = reader.GetString("apellido"),
+
+                Telefono = reader.IsDBNull(reader.GetOrdinal("telefono"))
+                    ? null
+                    : reader.GetString("telefono"),
+
+                Email = reader.IsDBNull(reader.GetOrdinal("email"))
+                    ? null
+                    : reader.GetString("email"),
+
+                Direccion = reader.IsDBNull(reader.GetOrdinal("direccion"))
+                    ? null
+                    : reader.GetString("direccion"),
+
+                CategoriaCliente = reader.IsDBNull(reader.GetOrdinal("categoria_cliente"))
+                    ? null
+                    : reader.GetString("categoria_cliente"),
+
+                FechaRegistro = reader.IsDBNull(reader.GetOrdinal("fecha_registro"))
+                    ? null
+                    : reader.GetDateTime("fecha_registro"),
+
+                Estado = reader.IsDBNull(reader.GetOrdinal("estado"))
+                    ? null
+                    : reader.GetString("estado")
+            });
+        }
+
+        return clientes;
+    }
+
+
 }
+
+
+
+
+

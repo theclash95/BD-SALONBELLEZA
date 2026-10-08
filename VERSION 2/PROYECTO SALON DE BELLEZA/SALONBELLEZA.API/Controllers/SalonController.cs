@@ -102,4 +102,97 @@ public class SalonController : ControllerBase
 
     [HttpGet("estado")]
     public IActionResult Estado() => Ok(new { sistema="SALONBELLEZA", estado="API funcionando", fecha=DateTime.Now });
+
+
+    [HttpGet("clientes")]
+    public async Task<IActionResult> ObtenerClientes()
+    {
+        try
+        {
+            var clientes = await _servicio.ObtenerClientesAsync();
+
+            return Ok(clientes);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al obtener los clientes.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+
+    [HttpGet("clientes/{idCliente:int}")]
+    public async Task<IActionResult> ObtenerClientePorId(int idCliente)
+    {
+        try
+        {
+            if (idCliente <= 0)
+            {
+                return BadRequest(new
+                {
+                    mensaje = "El ID del cliente debe ser mayor que cero."
+                });
+            }
+
+            var cliente = await _servicio.ObtenerClientePorIdAsync(idCliente);
+
+            if (cliente == null)
+            {
+                return NotFound(new
+                {
+                    mensaje = "No se encontró el cliente."
+                });
+            }
+
+            return Ok(cliente);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al obtener el cliente.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+    [HttpGet("clientes/buscar")]
+    public async Task<IActionResult> BuscarClientes([FromQuery] string termino)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(termino))
+            {
+                return BadRequest(new
+                {
+                    mensaje = "Debe ingresar un término de búsqueda."
+                });
+            }
+
+            var clientes = await _servicio.BuscarClientesAsync(termino);
+
+            if (!clientes.Any())
+            {
+                return NotFound(new
+                {
+                    mensaje = $"No se encontraron clientes para '{termino}'."
+                });
+            }
+
+            return Ok(clientes);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al buscar clientes.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+
 }

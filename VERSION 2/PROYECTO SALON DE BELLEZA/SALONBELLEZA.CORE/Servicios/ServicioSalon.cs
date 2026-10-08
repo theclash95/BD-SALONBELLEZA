@@ -118,5 +118,26 @@ public class ServicioSalon
         if(string.IsNullOrWhiteSpace(p.Nombre)||string.IsNullOrWhiteSpace(p.Apellido))
             throw new ArgumentException("Nombre y apellido son obligatorios.");
         if(p.Nombre.Length>50||p.Apellido.Length>50) throw new ArgumentException("Nombre o apellido demasiado largo.");
+
+
     }
+
+
+    public Task<IEnumerable<ClienteConsulta>> ObtenerClientesAsync()
+    {
+        return _repo.ObtenerClientesAsync();
+    }
+
+
+    public Task<ClienteConsulta?> ObtenerClientePorIdAsync(int idCliente)
+    {
+        return _repo.ObtenerClientePorIdAsync(idCliente);
+    }
+
+    public Task<IEnumerable<ClienteConsulta>> BuscarClientesAsync(string termino)
+    {
+        return _repo.BuscarClientesAsync(termino);
+    }
+
+
 }

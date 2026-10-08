@@ -24,4 +24,10 @@ public interface ISalonRepositorio
     Task<int> AsignarMembresiaClienteAsync(ClienteMembresia cm);
     Task<int> RegistrarCategoriaServicioAsync(string nombre, string? descripcion);
 
+    Task<IEnumerable<ClienteConsulta>> ObtenerClientesAsync();
+
+    Task<ClienteConsulta?> ObtenerClientePorIdAsync(int idCliente);
+
+    Task<IEnumerable<ClienteConsulta>> BuscarClientesAsync(string termino);
+
 }
