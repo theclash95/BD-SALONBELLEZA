@@ -1,0 +1,26 @@
+info:
+  name: REGISTRAR COMPRA
+  type: http
+  seq: 14
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/compras
+  body:
+    type: json
+    data: |-
+      {
+        "idProveedor": 1,
+        "idProducto": 1,
+        "cantidad": 10,
+        "precioCosto": 5000,
+        "observacion": "Compra inicial de productos"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -1,0 +1,29 @@
+info:
+  name: REGISTRAR PRODUCTO
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/productos
+  body:
+    type: json
+    data: |-
+      {
+        "idCategoriaProducto": 1,
+        "codigo": "SH001",
+        "nombre": "Shampoo Profesional",
+        "descripcion": "Shampoo para cabello",
+        "precioCosto": 5000,
+        "precioVenta": 8000,
+        "stock": 20,
+        "stockMinimo": 5
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

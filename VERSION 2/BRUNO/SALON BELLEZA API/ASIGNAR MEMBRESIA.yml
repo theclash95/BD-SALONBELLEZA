@@ -1,0 +1,24 @@
+info:
+  name: ASIGNAR MEMBRESIA
+  type: http
+  seq: 16
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/membresias/asignar
+  body:
+    type: json
+    data: |-
+      {
+        "idCliente": 1,
+        "idMembresia": 1,
+        "observacion": "Membresía Premium - primer mes"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

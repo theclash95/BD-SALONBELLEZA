@@ -1,0 +1,23 @@
+info:
+  name: REGISTRAR CATEGORIA PRODUCTO
+  type: http
+  seq: 10
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/categorias-producto
+  body:
+    type: json
+    data: |-
+      {
+        "nombre": "Productos Capilares",
+        "descripcion": "Shampoo, acondicionadores y tratamientos"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

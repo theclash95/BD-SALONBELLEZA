@@ -1,0 +1,24 @@
+info:
+  name: REGISTRAR FACTURA
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/facturas
+  body:
+    type: json
+    data: |-
+      {
+        "idVenta": 1,
+        "numeroFactura": "0001-00000001",
+        "tipoComprobante": "FACTURA C"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

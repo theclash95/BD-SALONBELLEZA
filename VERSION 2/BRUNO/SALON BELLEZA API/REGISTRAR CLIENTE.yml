@@ -1,0 +1,28 @@
+info:
+  name: REGISTRAR CLIENTE
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/clientes
+  body:
+    type: json
+    data: |-
+      {
+        "dni": "999999999",
+        "nombre": "Saul",
+        "apellido": "Isasmendi",
+        "telefono": "38385554444",
+        "email": "saulisasmendi@hotmail.com",
+        "direccion": "Santa María",
+        "categoria": "CLIENTE"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

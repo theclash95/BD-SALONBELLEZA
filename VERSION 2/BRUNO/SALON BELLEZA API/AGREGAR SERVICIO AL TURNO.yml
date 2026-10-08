@@ -1,0 +1,24 @@
+info:
+  name: AGREGAR SERVICIO AL TURNO
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/turnos/servicios
+  body:
+    type: json
+    data: |-
+      {
+        "idTurno": 1,
+        "idServicio": 1,
+        "descuento": 0
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

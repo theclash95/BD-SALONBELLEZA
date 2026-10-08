@@ -1,0 +1,25 @@
+info:
+  name: ACTUALIZAR STOCK
+  type: http
+  seq: 12
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/productos/stock
+  body:
+    type: json
+    data: |-
+      {
+        "idProducto": 1,
+        "cantidad": 10,
+        "tipoMovimiento": "INGRESO",
+        "motivo": "Carga inicial de stock"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
