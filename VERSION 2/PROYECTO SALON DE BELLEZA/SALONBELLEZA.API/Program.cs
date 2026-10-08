@@ -1,0 +1,21 @@
+using SALONBELLEZA.INFRASTRUCTURE.ExtensionesServicios;
+
+namespace SALONBELLEZA.API;
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+        builder.Services.AddInfrastructure(builder.Configuration);
+        builder.Services.AddControllers();
+        builder.Services.AddOpenApi();
+
+        var app = builder.Build();
+        if (app.Environment.IsDevelopment())
+            app.MapOpenApi();
+
+        app.UseHttpsRedirection();
+        app.MapControllers();
+        app.Run();
+    }
+}
