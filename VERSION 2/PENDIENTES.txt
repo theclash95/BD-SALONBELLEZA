@@ -1,0 +1,18 @@
+PENDIENTES
+Creear metodos de almacenamiento al final es una banda esto jaj
+
+Módulo	Estado
+ Clientes   			Completo
+‍ Empleados  			en proceso
+ Categorías de servicios	en proceso
+ Servicios			en proceso
+ Turnos				en proceso
+ Categorías de productos	en proceso
+ Productos			en proceso
+ Stock				en proceso
+ Proveedores			en proceso
+ Compras			en proceso
+ Ventas				en proceso
+ Pagos				en proceso
+ Facturas			en proceso
+ Membresías			en proceso
