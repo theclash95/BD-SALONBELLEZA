@@ -4,15 +4,15 @@ Creear metodos de almacenamiento al final es una banda esto jaj
 Módulo	Estado
  Clientes   			Completo
 ‍ Empleados  			en proceso -- ALE
- Categorías de servicios	en proceso -- ALE
+ Categorías de servicios	en proceso -- X
  Servicios			en proceso  -- ALE
  Turnos				en proceso  -- ALE
- Categorías de productos	en proceso
- Productos			en proceso
- Stock				en proceso
- Proveedores			en proceso
+ Categorías de productos	en proceso -- X
+ Productos			en proceso -- X
+ Stock				en proceso  -- X
+ Proveedores			en proceso -- X
  Compras			en proceso  -- SAUL
  Ventas				en proceso  -- SAUL
  Pagos				en proceso   -- SAUL
  Facturas			en proceso  -- SAUL
- Membresías			en proceso  -- SAUL
+ Membresías			en proceso  -- X
