@@ -326,5 +326,152 @@ public class SalonController : ControllerBase
         }
     }
 
+    // ===============================
+    // EMPLEADOS
+    // ===============================
+
+    // GET: api/salon/empleados
+    [HttpGet("empleados")]
+    public async Task<IActionResult> ObtenerEmpleados()
+    {
+        try
+        {
+            var empleados = await _servicio.ObtenerEmpleadosAsync();
+            return Ok(empleados);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al obtener los empleados.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+    // GET: api/salon/empleados/1
+    [HttpGet("empleados/{idEmpleado:int}")]
+    public async Task<IActionResult> ObtenerEmpleadoPorId(int idEmpleado)
+    {
+        try
+        {
+            if (idEmpleado <= 0)
+                return BadRequest(new { mensaje = "El ID debe ser mayor que cero." });
+
+            var empleado = await _servicio.ObtenerEmpleadoPorIdAsync(idEmpleado);
+
+            if (empleado == null)
+                return NotFound(new { mensaje = "No se encontró el empleado." });
+
+            return Ok(empleado);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al obtener el empleado.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+    // GET: api/salon/empleados/buscar?termino=Juan
+    [HttpGet("empleados/buscar")]
+    public async Task<IActionResult> BuscarEmpleados([FromQuery] string termino)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(termino))
+                return BadRequest(new { mensaje = "Debe ingresar un término de búsqueda." });
+
+            var empleados = await _servicio.BuscarEmpleadosAsync(termino);
+
+            if (!empleados.Any())
+                return NotFound(new { mensaje = $"No se encontraron empleados para '{termino}'." });
+
+            return Ok(empleados);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al buscar empleados.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+    // PUT: api/salon/empleados/1
+    [HttpPut("empleados/{idEmpleado:int}")]
+    public async Task<IActionResult> ActualizarEmpleado(
+        int idEmpleado,
+        [FromBody] RegistrarEmpleadoRequest request)
+    {
+        try
+        {
+            if (idEmpleado <= 0)
+                return BadRequest(new { mensaje = "El ID debe ser mayor que cero." });
+
+            if (string.IsNullOrWhiteSpace(request.Nombre) ||
+                string.IsNullOrWhiteSpace(request.Apellido))
+                return BadRequest(new { mensaje = "Nombre y apellido son obligatorios." });
+
+            var empleado = await _servicio.ObtenerEmpleadoPorIdAsync(idEmpleado);
+
+            if (empleado == null)
+                return NotFound(new { mensaje = "No se encontró el empleado." });
+
+            await _servicio.ActualizarEmpleadoAsync(
+                idEmpleado,
+                request.Dni,
+                request.Nombre,
+                request.Apellido,
+                request.Telefono,
+                request.Email,
+                request.Direccion,
+                request.TipoEmpleado);
+
+            return Ok(new { mensaje = "Empleado actualizado correctamente." });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al actualizar el empleado.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+    // DELETE: api/salon/empleados/1
+    [HttpDelete("empleados/{idEmpleado:int}")]
+    public async Task<IActionResult> DesactivarEmpleado(int idEmpleado)
+    {
+        try
+        {
+            if (idEmpleado <= 0)
+                return BadRequest(new { mensaje = "El ID debe ser mayor que cero." });
+
+            var empleado = await _servicio.ObtenerEmpleadoPorIdAsync(idEmpleado);
+
+            if (empleado == null)
+                return NotFound(new { mensaje = "No se encontró el empleado." });
+
+            await _servicio.DesactivarEmpleadoAsync(idEmpleado);
+
+            return Ok(new { mensaje = "Empleado desactivado correctamente." });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al desactivar el empleado.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+
+
 
 }

@@ -19,6 +19,26 @@
 CREATE DATABASE IF NOT EXISTS `salonbellezabd` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `salonbellezabd`;
 
+-- Volcando estructura para procedimiento salonbellezabd.ActualizarCategoriaProducto
+DELIMITER //
+CREATE PROCEDURE `ActualizarCategoriaProducto`(
+    IN p_id_categoria INT, IN p_nombre VARCHAR(50), IN p_descripcion VARCHAR(255)
+)
+BEGIN
+    UPDATE categorias_producto SET nombre = p_nombre, descripcion = p_descripcion WHERE id_categoria_producto = p_id_categoria;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ActualizarCategoriaServicio
+DELIMITER //
+CREATE PROCEDURE `ActualizarCategoriaServicio`(
+    IN p_id_categoria INT, IN p_nombre VARCHAR(50), IN p_descripcion VARCHAR(255)
+)
+BEGIN
+    UPDATE categorias_servicio SET nombre = p_nombre, descripcion = p_descripcion WHERE id_categoria_servicio = p_id_categoria;
+END//
+DELIMITER ;
+
 -- Volcando estructura para procedimiento salonbellezabd.ActualizarCliente
 DELIMITER //
 CREATE PROCEDURE `ActualizarCliente`(
@@ -44,6 +64,89 @@ BEGIN
         p.direccion = p_direccion
     WHERE c.id_cliente = p_id_cliente;
 
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ActualizarEmpleado
+DELIMITER //
+CREATE PROCEDURE `ActualizarEmpleado`(
+    IN p_id_empleado INT,
+    IN p_dni VARCHAR(10),
+    IN p_nombre VARCHAR(50),
+    IN p_apellido VARCHAR(50),
+    IN p_telefono VARCHAR(20),
+    IN p_email VARCHAR(100),
+    IN p_direccion VARCHAR(100),
+    IN p_tipo_empleado VARCHAR(50)
+)
+BEGIN
+    UPDATE personas p
+    INNER JOIN empleados e ON e.id_persona = p.id_persona
+    SET
+        p.dni = p_dni,
+        p.nombre = p_nombre,
+        p.apellido = p_apellido,
+        p.telefono = p_telefono,
+        p.email = p_email,
+        p.direccion = p_direccion,
+        e.tipo_empleado = p_tipo_empleado
+    WHERE e.id_empleado = p_id_empleado;
+
+    SELECT ROW_COUNT() AS filas_afectadas;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ActualizarProducto
+DELIMITER //
+CREATE PROCEDURE `ActualizarProducto`(
+    IN p_id_producto INT, IN p_id_categoria INT, IN p_codigo VARCHAR(50), IN p_nombre VARCHAR(100),
+    IN p_descripcion TEXT, IN p_precio_costo DECIMAL(10,2), IN p_precio_venta DECIMAL(10,2), IN p_stock_minimo INT
+)
+BEGIN
+    UPDATE productos 
+    SET id_categoria_producto = p_id_categoria, codigo = p_codigo, nombre = p_nombre, descripcion = p_descripcion,
+        precio_costo = p_precio_costo, precio_venta = p_precio_venta, stock_minimo = p_stock_minimo
+    WHERE id_producto = p_id_producto;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ActualizarProveedor
+DELIMITER //
+CREATE PROCEDURE `ActualizarProveedor`(
+    IN p_id_proveedor INT, IN p_razon_social VARCHAR(100), IN p_cuit VARCHAR(20), 
+    IN p_telefono VARCHAR(20), IN p_email VARCHAR(100), IN p_direccion VARCHAR(100)
+)
+BEGIN
+    UPDATE proveedores 
+    SET razon_social = p_razon_social, cuit = p_cuit, telefono = p_telefono, email = p_email, direccion = p_direccion
+    WHERE id_proveedor = p_id_proveedor;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ActualizarSalon
+DELIMITER //
+CREATE PROCEDURE `ActualizarSalon`(
+    IN p_id_salon INT, IN p_nombre VARCHAR(100), IN p_direccion VARCHAR(100), 
+    IN p_telefono VARCHAR(30), IN p_email VARCHAR(100), IN p_logo VARCHAR(255)
+)
+BEGIN
+    UPDATE salon 
+    SET nombre = p_nombre, direccion = p_direccion, telefono = p_telefono, email = p_email, logo = p_logo
+    WHERE id_salon = p_id_salon;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ActualizarServicio
+DELIMITER //
+CREATE PROCEDURE `ActualizarServicio`(
+    IN p_id_servicio INT, IN p_id_categoria INT, IN p_nombre VARCHAR(100), 
+    IN p_descripcion TEXT, IN p_precio DECIMAL(10,2), IN p_duracion INT
+)
+BEGIN
+    UPDATE servicios 
+    SET id_categoria_servicio = p_id_categoria, nombre = p_nombre, descripcion = p_descripcion, 
+        precio = p_precio, duracion_minuto = p_duracion
+    WHERE id_servicio = p_id_servicio;
 END//
 DELIMITER ;
 
@@ -147,29 +250,67 @@ BEGIN
 END//
 DELIMITER ;
 
+-- Volcando estructura para procedimiento salonbellezabd.BuscarEmpleados
+DELIMITER //
+CREATE PROCEDURE `BuscarEmpleados`(
+    IN p_termino VARCHAR(100)
+)
+BEGIN
+    SELECT
+        e.id_empleado,
+        p.id_persona,
+        p.dni,
+        p.nombre,
+        p.apellido,
+        p.telefono,
+        p.email,
+        p.direccion,
+        e.tipo_empleado,
+        e.fecha_ingreso,
+        e.estado
+    FROM empleados e
+    INNER JOIN personas p ON e.id_persona = p.id_persona
+    WHERE p.nombre LIKE CONCAT('%', p_termino, '%')
+       OR p.apellido LIKE CONCAT('%', p_termino, '%')
+       OR p.dni LIKE CONCAT('%', p_termino, '%')
+       OR p.telefono LIKE CONCAT('%', p_termino, '%')
+       OR p.email LIKE CONCAT('%', p_termino, '%')
+       OR e.tipo_empleado LIKE CONCAT('%', p_termino, '%')
+    ORDER BY p.apellido, p.nombre;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.CambiarEstadoTurno
+DELIMITER //
+CREATE PROCEDURE `CambiarEstadoTurno`(IN p_id_turno INT, IN p_estado VARCHAR(50))
+BEGIN
+    UPDATE turnos SET estado = p_estado WHERE id_turno = p_id_turno;
+END//
+DELIMITER ;
+
 -- Volcando estructura para tabla salonbellezabd.categorias_producto
 CREATE TABLE IF NOT EXISTS `categorias_producto` (
   `id_categoria_producto` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `activo` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id_categoria_producto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.categorias_producto: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.categorias_producto: ~0 rows (aproximadamente)
 REPLACE INTO `categorias_producto` (`id_categoria_producto`, `nombre`, `descripcion`, `activo`) VALUES
 	(1, 'Productos Capilares', 'Shampoo, acondicionadores y tratamientos', 1);
 
 -- Volcando estructura para tabla salonbellezabd.categorias_servicio
 CREATE TABLE IF NOT EXISTS `categorias_servicio` (
   `id_categoria_servicio` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `activo` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id_categoria_servicio`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.categorias_servicio: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.categorias_servicio: ~0 rows (aproximadamente)
 REPLACE INTO `categorias_servicio` (`id_categoria_servicio`, `nombre`, `descripcion`, `activo`) VALUES
 	(1, 'Peluquería', 'Servicios de corte y peinado', 1);
 
@@ -177,9 +318,9 @@ REPLACE INTO `categorias_servicio` (`id_categoria_servicio`, `nombre`, `descripc
 CREATE TABLE IF NOT EXISTS `clientes` (
   `id_cliente` int NOT NULL AUTO_INCREMENT,
   `id_persona` int NOT NULL,
-  `categoria_cliente` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `categoria_cliente` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_registro` date DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `uq_clientes_persona` (`id_persona`),
   CONSTRAINT `fk_clientes_persona` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`)
@@ -199,8 +340,8 @@ CREATE TABLE IF NOT EXISTS `cliente_membresia` (
   `id_membresia` int NOT NULL,
   `fecha_inicio` date DEFAULT NULL,
   `fecha_fin` date DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `observacion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observacion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_cliente_membresia`),
   KEY `fk_cliente_membresia_cliente` (`id_cliente`),
   KEY `fk_cliente_membresia_membresia` (`id_membresia`),
@@ -208,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `cliente_membresia` (
   CONSTRAINT `fk_cliente_membresia_membresia` FOREIGN KEY (`id_membresia`) REFERENCES `membresias` (`id_membresia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.cliente_membresia: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.cliente_membresia: ~0 rows (aproximadamente)
 REPLACE INTO `cliente_membresia` (`id_cliente_membresia`, `id_cliente`, `id_membresia`, `fecha_inicio`, `fecha_fin`, `estado`, `observacion`) VALUES
 	(1, 1, 1, '2026-10-08', '2026-11-07', 'ACTIVA', 'Membresía Premium - primer mes');
 
@@ -217,16 +358,16 @@ CREATE TABLE IF NOT EXISTS `compras` (
   `id_compra` int NOT NULL AUTO_INCREMENT,
   `id_proveedor` int NOT NULL,
   `fecha_hora` datetime DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `subtotal` decimal(10,2) DEFAULT NULL,
   `total` decimal(10,2) DEFAULT NULL,
-  `observacion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observacion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_compra`),
   KEY `fk_compras_proveedor` (`id_proveedor`),
   CONSTRAINT `fk_compras_proveedor` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedores` (`id_proveedor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.compras: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.compras: ~0 rows (aproximadamente)
 REPLACE INTO `compras` (`id_compra`, `id_proveedor`, `fecha_hora`, `estado`, `subtotal`, `total`, `observacion`) VALUES
 	(1, 1, '2026-10-08 00:47:22', 'COMPLETADO', 50000.00, 50000.00, 'Compra inicial de productos');
 
@@ -311,6 +452,22 @@ BEGIN
 END//
 DELIMITER ;
 
+-- Volcando estructura para procedimiento salonbellezabd.DesactivarCategoriaProducto
+DELIMITER //
+CREATE PROCEDURE `DesactivarCategoriaProducto`(IN p_id_categoria INT)
+BEGIN
+    UPDATE categorias_producto SET activo = 0 WHERE id_categoria_producto = p_id_categoria;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.DesactivarCategoriaServicio
+DELIMITER //
+CREATE PROCEDURE `DesactivarCategoriaServicio`(IN p_id_categoria INT)
+BEGIN
+    UPDATE categorias_servicio SET activo = 0 WHERE id_categoria_servicio = p_id_categoria;
+END//
+DELIMITER ;
+
 -- Volcando estructura para procedimiento salonbellezabd.DesactivarCliente
 DELIMITER //
 CREATE PROCEDURE `DesactivarCliente`(IN p_id_cliente INT)
@@ -320,6 +477,44 @@ BEGIN
     SET estado = 'INACTIVO'
     WHERE id_cliente = p_id_cliente;
 
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.DesactivarEmpleado
+DELIMITER //
+CREATE PROCEDURE `DesactivarEmpleado`(
+    IN p_id_empleado INT
+)
+BEGIN
+    UPDATE empleados
+    SET estado = 'INACTIVO'
+    WHERE id_empleado = p_id_empleado;
+
+    SELECT ROW_COUNT() AS filas_afectadas;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.DesactivarProducto
+DELIMITER //
+CREATE PROCEDURE `DesactivarProducto`(IN p_id_producto INT)
+BEGIN
+    UPDATE productos SET estado = 'INACTIVO' WHERE id_producto = p_id_producto;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.DesactivarProveedor
+DELIMITER //
+CREATE PROCEDURE `DesactivarProveedor`(IN p_id_proveedor INT)
+BEGIN
+    UPDATE proveedores SET activo = 'INACTIVO' WHERE id_proveedor = p_id_proveedor;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.DesactivarServicio
+DELIMITER //
+CREATE PROCEDURE `DesactivarServicio`(IN p_id_servicio INT)
+BEGIN
+    UPDATE servicios SET estado = 'INACTIVO' WHERE id_servicio = p_id_servicio;
 END//
 DELIMITER ;
 
@@ -337,7 +532,7 @@ CREATE TABLE IF NOT EXISTS `detalle_compra` (
   CONSTRAINT `fk_detalle_compra_producto` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.detalle_compra: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.detalle_compra: ~0 rows (aproximadamente)
 REPLACE INTO `detalle_compra` (`id_detalle_compra`, `id_compra`, `id_producto`, `cantidad`, `precio_costo`) VALUES
 	(1, 1, 1, 10, 5000.00);
 
@@ -356,7 +551,7 @@ CREATE TABLE IF NOT EXISTS `detalle_turno` (
   CONSTRAINT `fk_detalle_turno_turno` FOREIGN KEY (`id_turno`) REFERENCES `turnos` (`id_turno`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.detalle_turno: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.detalle_turno: ~0 rows (aproximadamente)
 REPLACE INTO `detalle_turno` (`id_detalle_turno`, `id_turno`, `id_servicio`, `precio_unitario`, `descuento`, `subtotal`) VALUES
 	(1, 1, 1, 10000.00, 0.00, 10000.00);
 
@@ -385,26 +580,26 @@ CREATE TABLE IF NOT EXISTS `detalle_venta` (
 CREATE TABLE IF NOT EXISTS `empleados` (
   `id_empleado` int NOT NULL AUTO_INCREMENT,
   `id_persona` int NOT NULL,
-  `tipo_empleado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipo_empleado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_ingreso` date DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_empleado`),
   UNIQUE KEY `uq_empleados_persona` (`id_persona`),
   CONSTRAINT `fk_empleados_persona` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.empleados: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.empleados: ~0 rows (aproximadamente)
 REPLACE INTO `empleados` (`id_empleado`, `id_persona`, `tipo_empleado`, `fecha_ingreso`, `estado`) VALUES
-	(1, 2, 'PROFESIONAL', '2026-10-07', 'ACTIVO');
+	(1, 2, 'Peluquero', '2026-10-07', 'ACTIVO');
 
 -- Volcando estructura para tabla salonbellezabd.facturas
 CREATE TABLE IF NOT EXISTS `facturas` (
   `id_factura` int NOT NULL AUTO_INCREMENT,
   `id_venta` int NOT NULL,
-  `numero_factura` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `numero_factura` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_emision` datetime DEFAULT NULL,
-  `tipo_comprobante` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipo_comprobante` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `subtotal` decimal(10,2) DEFAULT NULL,
   `descuento` decimal(10,2) DEFAULT NULL,
   `total` decimal(10,2) DEFAULT NULL,
@@ -413,7 +608,7 @@ CREATE TABLE IF NOT EXISTS `facturas` (
   CONSTRAINT `fk_facturas_venta` FOREIGN KEY (`id_venta`) REFERENCES `ventas` (`id_venta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.facturas: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.facturas: ~0 rows (aproximadamente)
 REPLACE INTO `facturas` (`id_factura`, `id_venta`, `numero_factura`, `fecha_emision`, `tipo_comprobante`, `estado`, `subtotal`, `descuento`, `total`) VALUES
 	(1, 1, '0001-00000001', '2026-10-08 00:40:47', 'FACTURA C', 'EMITIDA', 10000.00, 0.00, 10000.00);
 
@@ -440,16 +635,16 @@ DELIMITER ;
 -- Volcando estructura para tabla salonbellezabd.membresias
 CREATE TABLE IF NOT EXISTS `membresias` (
   `id_membresia` int NOT NULL AUTO_INCREMENT,
-  `nombre_plan` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `nombre_plan` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `costo` decimal(10,2) DEFAULT NULL,
   `duracion_dias` int DEFAULT NULL,
   `porcentaje_descuento` decimal(5,2) DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_membresia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.membresias: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.membresias: ~0 rows (aproximadamente)
 REPLACE INTO `membresias` (`id_membresia`, `nombre_plan`, `descripcion`, `costo`, `duracion_dias`, `porcentaje_descuento`, `estado`) VALUES
 	(1, 'Membresía Premium', 'Beneficios exclusivos del salón', 25000.00, 30, 10.00, 'ACTIVO');
 
@@ -458,10 +653,10 @@ CREATE TABLE IF NOT EXISTS `movimiento_stock` (
   `id_movimiento` int NOT NULL AUTO_INCREMENT,
   `id_producto` int NOT NULL,
   `id_detalle_venta` int DEFAULT NULL,
-  `tipo_movimiento` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipo_movimiento` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cantidad` int DEFAULT NULL,
   `fecha_hora` datetime DEFAULT NULL,
-  `motivo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `motivo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `stock_anterior` int DEFAULT NULL,
   `stock_posterior` int DEFAULT NULL,
   PRIMARY KEY (`id_movimiento`),
@@ -475,6 +670,33 @@ CREATE TABLE IF NOT EXISTS `movimiento_stock` (
 REPLACE INTO `movimiento_stock` (`id_movimiento`, `id_producto`, `id_detalle_venta`, `tipo_movimiento`, `cantidad`, `fecha_hora`, `motivo`, `stock_anterior`, `stock_posterior`) VALUES
 	(1, 1, NULL, 'INGRESO', 10, '2026-10-08 00:45:18', 'Carga inicial de stock', 20, 30),
 	(2, 1, NULL, 'INGRESO', 10, '2026-10-08 00:47:22', 'Compra a Proveedor', 30, 40);
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerCategoriasProducto
+DELIMITER //
+CREATE PROCEDURE `ObtenerCategoriasProducto`()
+BEGIN
+    SELECT id_categoria_producto, nombre, descripcion, activo FROM categorias_producto ORDER BY nombre;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerCategoriasServicio
+DELIMITER //
+CREATE PROCEDURE `ObtenerCategoriasServicio`()
+BEGIN
+    SELECT id_categoria_servicio, nombre, descripcion, activo FROM categorias_servicio ORDER BY nombre;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerClienteMembresias
+DELIMITER //
+CREATE PROCEDURE `ObtenerClienteMembresias`(IN p_id_cliente INT)
+BEGIN
+    SELECT cm.id_cliente_membresia, m.nombre_plan, cm.fecha_inicio, cm.fecha_fin, cm.estado, cm.observacion
+    FROM cliente_membresia cm
+    INNER JOIN membresias m ON cm.id_membresia = m.id_membresia
+    WHERE cm.id_cliente = p_id_cliente;
+END//
+DELIMITER ;
 
 -- Volcando estructura para procedimiento salonbellezabd.ObtenerClientePorId
 DELIMITER //
@@ -526,21 +748,249 @@ BEGIN
 END//
 DELIMITER ;
 
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerCompraPorId
+DELIMITER //
+CREATE PROCEDURE `ObtenerCompraPorId`(IN p_id_compra INT)
+BEGIN
+    SELECT c.id_compra, c.id_proveedor, pr.razon_social AS proveedor, 
+           c.fecha_hora, c.estado, c.subtotal, c.total, c.observacion
+    FROM compras c
+    INNER JOIN proveedores pr ON c.id_proveedor = pr.id_proveedor
+    WHERE c.id_compra = p_id_compra;
+
+    SELECT dc.id_detalle_compra, dc.id_producto, p.nombre AS producto, 
+           dc.cantidad, dc.precio_costo
+    FROM detalle_compra dc
+    INNER JOIN productos p ON dc.id_producto = p.id_producto
+    WHERE dc.id_compra = p_id_compra;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerCompras
+DELIMITER //
+CREATE PROCEDURE `ObtenerCompras`()
+BEGIN
+    SELECT c.id_compra, c.id_proveedor, pr.razon_social AS proveedor, 
+           c.fecha_hora, c.estado, c.subtotal, c.total, c.observacion
+    FROM compras c
+    INNER JOIN proveedores pr ON c.id_proveedor = pr.id_proveedor
+    ORDER BY c.fecha_hora DESC;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerEmpleadoPorId
+DELIMITER //
+CREATE PROCEDURE `ObtenerEmpleadoPorId`(
+    IN p_id_empleado INT
+)
+BEGIN
+    SELECT
+        e.id_empleado,
+        p.id_persona,
+        p.dni,
+        p.nombre,
+        p.apellido,
+        p.telefono,
+        p.email,
+        p.direccion,
+        e.tipo_empleado,
+        e.fecha_ingreso,
+        e.estado
+    FROM empleados e
+    INNER JOIN personas p ON e.id_persona = p.id_persona
+    WHERE e.id_empleado = p_id_empleado;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerEmpleados
+DELIMITER //
+CREATE PROCEDURE `ObtenerEmpleados`()
+BEGIN
+    SELECT 
+        e.id_empleado, p.id_persona, p.dni, p.nombre, p.apellido, 
+        p.telefono, p.email, p.direccion, e.tipo_empleado, 
+        e.fecha_ingreso, e.estado
+    FROM empleados e
+    INNER JOIN personas p ON e.id_persona = p.id_persona
+    ORDER BY p.apellido, p.nombre;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerFacturaPorId
+DELIMITER //
+CREATE PROCEDURE `ObtenerFacturaPorId`(IN p_id_factura INT)
+BEGIN
+    SELECT f.id_factura, f.id_venta, f.numero_factura, f.fecha_emision, 
+           f.tipo_comprobante, f.estado, f.subtotal, f.descuento, f.total,
+           CONCAT(p.nombre, ' ', p.apellido) AS cliente
+    FROM facturas f
+    INNER JOIN ventas v ON f.id_venta = v.id_venta
+    INNER JOIN clientes c ON v.id_cliente = c.id_cliente
+    INNER JOIN personas p ON c.id_persona = p.id_persona
+    WHERE f.id_factura = p_id_factura;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerFacturas
+DELIMITER //
+CREATE PROCEDURE `ObtenerFacturas`()
+BEGIN
+    SELECT f.id_factura, f.id_venta, f.numero_factura, f.fecha_emision, 
+           f.tipo_comprobante, f.estado, f.subtotal, f.descuento, f.total,
+           CONCAT(p.nombre, ' ', p.apellido) AS cliente
+    FROM facturas f
+    INNER JOIN ventas v ON f.id_venta = v.id_venta
+    INNER JOIN clientes c ON v.id_cliente = c.id_cliente
+    INNER JOIN personas p ON c.id_persona = p.id_persona
+    ORDER BY f.fecha_emision DESC;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerMembresias
+DELIMITER //
+CREATE PROCEDURE `ObtenerMembresias`()
+BEGIN
+    SELECT id_membresia, nombre_plan, descripcion, costo, duracion_dias, porcentaje_descuento, estado FROM membresias ORDER BY nombre_plan;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerPagosPorVenta
+DELIMITER //
+CREATE PROCEDURE `ObtenerPagosPorVenta`(IN p_id_venta INT)
+BEGIN
+    SELECT id_pago, id_venta, fecha_pago, monto, metodo_pago, estado, referencia
+    FROM pagos
+    WHERE id_venta = p_id_venta
+    ORDER BY fecha_pago DESC;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerProductoPorId
+DELIMITER //
+CREATE PROCEDURE `ObtenerProductoPorId`(IN p_id_producto INT)
+BEGIN
+    SELECT p.id_producto, p.id_categoria_producto, c.nombre AS nombre_categoria, p.codigo, p.nombre, p.descripcion, p.precio_costo, p.precio_venta, p.stock_actual, p.stock_minimo, p.estado
+    FROM productos p
+    INNER JOIN categorias_producto c ON p.id_categoria_producto = c.id_categoria_producto
+    WHERE p.id_producto = p_id_producto;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerProductos
+DELIMITER //
+CREATE PROCEDURE `ObtenerProductos`()
+BEGIN
+    SELECT p.id_producto, p.id_categoria_producto, c.nombre AS nombre_categoria, p.codigo, p.nombre, p.descripcion, p.precio_costo, p.precio_venta, p.stock_actual, p.stock_minimo, p.estado
+    FROM productos p
+    INNER JOIN categorias_producto c ON p.id_categoria_producto = c.id_categoria_producto
+    ORDER BY p.nombre;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerProveedores
+DELIMITER //
+CREATE PROCEDURE `ObtenerProveedores`()
+BEGIN
+    SELECT id_proveedor, razon_social, cuit, telefono, email, direccion, activo FROM proveedores ORDER BY razon_social;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerProveedorPorId
+DELIMITER //
+CREATE PROCEDURE `ObtenerProveedorPorId`(IN p_id_proveedor INT)
+BEGIN
+    SELECT id_proveedor, razon_social, cuit, telefono, email, direccion, activo FROM proveedores WHERE id_proveedor = p_id_proveedor;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerSalon
+DELIMITER //
+CREATE PROCEDURE `ObtenerSalon`()
+BEGIN
+    SELECT id_salon, nombre, direccion, telefono, email, logo, activo, fecha_alta FROM salon LIMIT 1;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerServicioPorId
+DELIMITER //
+CREATE PROCEDURE `ObtenerServicioPorId`(IN p_id_servicio INT)
+BEGIN
+    SELECT s.id_servicio, s.id_categoria_servicio, c.nombre AS nombre_categoria, s.nombre, s.descripcion, s.precio, s.duracion_minuto, s.estado
+    FROM servicios s
+    INNER JOIN categorias_servicio c ON s.id_categoria_servicio = c.id_categoria_servicio
+    WHERE s.id_servicio = p_id_servicio;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerServicios
+DELIMITER //
+CREATE PROCEDURE `ObtenerServicios`()
+BEGIN
+    SELECT s.id_servicio, s.id_categoria_servicio, c.nombre AS nombre_categoria, s.nombre, s.descripcion, s.precio, s.duracion_minuto, s.estado
+    FROM servicios s
+    INNER JOIN categorias_servicio c ON s.id_categoria_servicio = c.id_categoria_servicio
+    ORDER BY s.nombre;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerTurnos
+DELIMITER //
+CREATE PROCEDURE `ObtenerTurnos`()
+BEGIN
+    SELECT t.id_turno, t.id_cliente, CONCAT(pc.nombre, ' ', pc.apellido) AS nombre_cliente, 
+           t.id_empleado, CONCAT(pe.nombre, ' ', pe.apellido) AS nombre_empleado,
+           t.fecha, t.hora, t.estado, t.observacion
+    FROM turnos t
+    INNER JOIN clientes c ON t.id_cliente = c.id_cliente
+    INNER JOIN personas pc ON c.id_persona = pc.id_persona
+    INNER JOIN empleados e ON t.id_empleado = e.id_empleado
+    INNER JOIN personas pe ON e.id_persona = pe.id_persona
+    ORDER BY t.fecha DESC, t.hora DESC;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerVentaPorId
+DELIMITER //
+CREATE PROCEDURE `ObtenerVentaPorId`(IN p_id_venta INT)
+BEGIN
+    -- Devuelve la cabecera
+    SELECT v.id_venta, v.id_cliente, v.fecha_hora, v.tipo_venta, v.estado, v.subtotal, v.descuento, v.total, v.observacion
+    FROM ventas v WHERE v.id_venta = p_id_venta;
+    
+    -- Devuelve el detalle
+    SELECT dv.id_detalle_venta, dv.id_producto, dv.id_servicio, dv.cantidad, dv.precio_unitario, dv.descuento, dv.subtotal
+    FROM detalle_venta dv WHERE dv.id_venta = p_id_venta;
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento salonbellezabd.ObtenerVentas
+DELIMITER //
+CREATE PROCEDURE `ObtenerVentas`()
+BEGIN
+    SELECT v.id_venta, v.id_cliente, CONCAT(p.nombre, ' ', p.apellido) AS nombre_cliente,
+           v.fecha_hora, v.tipo_venta, v.estado, v.subtotal, v.descuento, v.total
+    FROM ventas v
+    INNER JOIN clientes c ON v.id_cliente = c.id_cliente
+    INNER JOIN personas p ON c.id_persona = p.id_persona
+    ORDER BY v.fecha_hora DESC;
+END//
+DELIMITER ;
+
 -- Volcando estructura para tabla salonbellezabd.pagos
 CREATE TABLE IF NOT EXISTS `pagos` (
   `id_pago` int NOT NULL AUTO_INCREMENT,
   `id_venta` int NOT NULL,
   `fecha_pago` datetime DEFAULT NULL,
   `monto` decimal(10,2) DEFAULT NULL,
-  `metodo_pago` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `referencia` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `metodo_pago` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referencia` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_pago`),
   KEY `fk_pagos_venta` (`id_venta`),
   CONSTRAINT `fk_pagos_venta` FOREIGN KEY (`id_venta`) REFERENCES `ventas` (`id_venta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.pagos: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.pagos: ~0 rows (aproximadamente)
 REPLACE INTO `pagos` (`id_pago`, `id_venta`, `fecha_pago`, `monto`, `metodo_pago`, `estado`, `referencia`) VALUES
 	(1, 1, '2026-10-08 00:32:28', 10000.00, 'EFECTIVO', 'APROBADO', 'Pago del turno 1');
 
@@ -550,9 +1000,9 @@ CREATE TABLE IF NOT EXISTS `pago_membresia` (
   `id_cliente_membresia` int NOT NULL,
   `fecha_pago` datetime DEFAULT NULL,
   `monto_pago` decimal(10,2) DEFAULT NULL,
-  `metodo_pago` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `referencia` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `metodo_pago` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referencia` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_pago_membresia`),
   KEY `fk_pago_membresia_cliente_membresia` (`id_cliente_membresia`),
   CONSTRAINT `fk_pago_membresia_cliente_membresia` FOREIGN KEY (`id_cliente_membresia`) REFERENCES `cliente_membresia` (`id_cliente_membresia`)
@@ -563,12 +1013,12 @@ CREATE TABLE IF NOT EXISTS `pago_membresia` (
 -- Volcando estructura para tabla salonbellezabd.personas
 CREATE TABLE IF NOT EXISTS `personas` (
   `id_persona` int NOT NULL AUTO_INCREMENT,
-  `dni` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apellido` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `telefono` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `direccion` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dni` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellido` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telefono` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `direccion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `activo` tinyint(1) DEFAULT '1',
   `fecha_alta` date DEFAULT NULL,
   PRIMARY KEY (`id_persona`)
@@ -577,7 +1027,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
 -- Volcando datos para la tabla salonbellezabd.personas: ~5 rows (aproximadamente)
 REPLACE INTO `personas` (`id_persona`, `dni`, `nombre`, `apellido`, `telefono`, `email`, `direccion`, `activo`, `fecha_alta`) VALUES
 	(1, '30123456', 'Juan', 'Perez', '6666666666', 'juan_nuevo@gmail.com', 'Santa María', 1, '2026-10-07'),
-	(2, '28987654', 'Maria', 'Gomez', '3834987654', 'maria@gmail.com', 'Santa Maria', 1, '2026-10-07'),
+	(2, '30111222', 'Juan', 'Perez', '3838123456', 'juan.perez@example.com', 'Centro', 1, '2026-10-07'),
 	(3, '999999999', 'Saul', 'Isasmendi', '38385554444', 'saulisasmendi@hotmail.com', 'Santa María', 1, '2026-10-08'),
 	(4, '5555999', 'alejandro', 'fuenzaida', '38385554444', 'Alejandroqq@hotmailcom', 'Santa María', 1, '2026-10-08'),
 	(5, '45456874', 'CANO', 'MOYA', '38385554444', 's55555i@hotmail.com', 'Santa María', 1, '2026-10-09');
@@ -586,37 +1036,37 @@ REPLACE INTO `personas` (`id_persona`, `dni`, `nombre`, `apellido`, `telefono`, 
 CREATE TABLE IF NOT EXISTS `productos` (
   `id_producto` int NOT NULL AUTO_INCREMENT,
   `id_categoria_producto` int NOT NULL,
-  `codigo` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `codigo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `precio_costo` decimal(10,2) DEFAULT NULL,
   `precio_venta` decimal(10,2) NOT NULL,
   `stock_actual` int DEFAULT '0',
   `stock_minimo` int DEFAULT '0',
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_alta` date DEFAULT NULL,
   PRIMARY KEY (`id_producto`),
   KEY `fk_productos_categoria` (`id_categoria_producto`),
   CONSTRAINT `fk_productos_categoria` FOREIGN KEY (`id_categoria_producto`) REFERENCES `categorias_producto` (`id_categoria_producto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.productos: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.productos: ~0 rows (aproximadamente)
 REPLACE INTO `productos` (`id_producto`, `id_categoria_producto`, `codigo`, `nombre`, `descripcion`, `precio_costo`, `precio_venta`, `stock_actual`, `stock_minimo`, `estado`, `fecha_alta`) VALUES
 	(1, 1, 'SH001', 'Shampoo Profesional', 'Shampoo para cabello', 5000.00, 8000.00, 40, 5, 'ACTIVO', '2026-10-08');
 
 -- Volcando estructura para tabla salonbellezabd.proveedores
 CREATE TABLE IF NOT EXISTS `proveedores` (
   `id_proveedor` int NOT NULL AUTO_INCREMENT,
-  `razon_social` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cuit` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `telefono` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `direccion` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `activo` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `razon_social` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cuit` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `direccion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `activo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_proveedor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.proveedores: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.proveedores: ~0 rows (aproximadamente)
 REPLACE INTO `proveedores` (`id_proveedor`, `razon_social`, `cuit`, `telefono`, `email`, `direccion`, `activo`) VALUES
 	(1, 'Distribuidora Belleza SRL', '30-71234567-8', '3834123456', 'distribuidora@gmail.com', 'Santa María', 'ACTIVO');
 
@@ -775,6 +1225,17 @@ BEGIN
 END//
 DELIMITER ;
 
+-- Volcando estructura para procedimiento salonbellezabd.RegistrarPagoMembresia
+DELIMITER //
+CREATE PROCEDURE `RegistrarPagoMembresia`(
+    IN p_id_cliente_membresia INT, IN p_monto DECIMAL(10,2), IN p_metodo VARCHAR(50), IN p_referencia VARCHAR(255)
+)
+BEGIN
+    INSERT INTO pago_membresia (id_cliente_membresia, fecha_pago, monto_pago, metodo_pago, estado, referencia)
+    VALUES (p_id_cliente_membresia, NOW(), p_monto, p_metodo, 'APROBADO', p_referencia);
+END//
+DELIMITER ;
+
 -- Volcando estructura para procedimiento salonbellezabd.RegistrarProducto
 DELIMITER //
 CREATE PROCEDURE `RegistrarProducto`(
@@ -834,11 +1295,11 @@ DELIMITER ;
 -- Volcando estructura para tabla salonbellezabd.salon
 CREATE TABLE IF NOT EXISTS `salon` (
   `id_salon` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `direccion` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `telefono` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `direccion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `activo` tinyint(1) DEFAULT '1',
   `fecha_alta` date DEFAULT NULL,
   PRIMARY KEY (`id_salon`)
@@ -850,17 +1311,17 @@ CREATE TABLE IF NOT EXISTS `salon` (
 CREATE TABLE IF NOT EXISTS `servicios` (
   `id_servicio` int NOT NULL AUTO_INCREMENT,
   `id_categoria_servicio` int NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `precio` decimal(10,2) NOT NULL,
   `duracion_minuto` int DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_servicio`),
   KEY `fk_servicios_categoria` (`id_categoria_servicio`),
   CONSTRAINT `fk_servicios_categoria` FOREIGN KEY (`id_categoria_servicio`) REFERENCES `categorias_servicio` (`id_categoria_servicio`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla salonbellezabd.servicios: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla salonbellezabd.servicios: ~0 rows (aproximadamente)
 REPLACE INTO `servicios` (`id_servicio`, `id_categoria_servicio`, `nombre`, `descripcion`, `precio`, `duracion_minuto`, `estado`) VALUES
 	(1, 1, 'Corte de cabello', 'Corte y peinado', 10000.00, NULL, 'ACTIVO');
 
@@ -871,8 +1332,8 @@ CREATE TABLE IF NOT EXISTS `turnos` (
   `id_empleado` int NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `observacion` text COLLATE utf8mb4_unicode_ci,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observacion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `fecha_creacion` datetime DEFAULT NULL,
   PRIMARY KEY (`id_turno`),
   KEY `fk_turnos_cliente` (`id_cliente`),
@@ -893,12 +1354,12 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   `id_cliente` int NOT NULL,
   `id_turno` int DEFAULT NULL,
   `fecha_hora` datetime DEFAULT NULL,
-  `tipo_venta` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `estado` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipo_venta` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `subtotal` decimal(10,2) DEFAULT NULL,
   `descuento` decimal(10,2) DEFAULT NULL,
   `total` decimal(10,2) DEFAULT NULL,
-  `observacion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observacion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_venta`),
   KEY `fk_ventas_cliente` (`id_cliente`),
   KEY `fk_ventas_turno` (`id_turno`),

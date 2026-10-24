@@ -331,6 +331,139 @@ public class SalonRepositorio : ISalonRepositorio
         await cmd.ExecuteNonQueryAsync();
     }
 
+
+
+    // ===============================
+    // MÉTODOS DE EMPLEADOS
+    // ===============================
+
+    public async Task<IEnumerable<EmpleadoConsulta>> ObtenerEmpleadosAsync()
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("ObtenerEmpleados", c)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+
+        using var reader = await cmd.ExecuteReaderAsync();
+        var empleados = new List<EmpleadoConsulta>();
+
+        while (await reader.ReadAsync())
+        {
+            empleados.Add(MapearEmpleado(reader));
+        }
+
+        return empleados;
+    }
+
+    public async Task<EmpleadoConsulta?> ObtenerEmpleadoPorIdAsync(int idEmpleado)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("ObtenerEmpleadoPorId", c)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+
+        cmd.Parameters.AddWithValue("@p_id_empleado", idEmpleado);
+
+        using var reader = await cmd.ExecuteReaderAsync();
+
+        if (await reader.ReadAsync())
+        {
+            return MapearEmpleado(reader);
+        }
+
+        return null;
+    }
+
+    public async Task<IEnumerable<EmpleadoConsulta>> BuscarEmpleadosAsync(string termino)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("BuscarEmpleados", c)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+
+        cmd.Parameters.AddWithValue("@p_termino", termino);
+
+        using var reader = await cmd.ExecuteReaderAsync();
+        var empleados = new List<EmpleadoConsulta>();
+
+        while (await reader.ReadAsync())
+        {
+            empleados.Add(MapearEmpleado(reader));
+        }
+
+        return empleados;
+    }
+
+    public async Task ActualizarEmpleadoAsync(
+        int idEmpleado,
+        string? dni,
+        string nombre,
+        string apellido,
+        string? telefono,
+        string? email,
+        string? direccion,
+        string? tipoEmpleado)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("ActualizarEmpleado", c)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+
+        cmd.Parameters.AddWithValue("@p_id_empleado", idEmpleado);
+        cmd.Parameters.AddWithValue("@p_dni", dni ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@p_nombre", nombre);
+        cmd.Parameters.AddWithValue("@p_apellido", apellido);
+        cmd.Parameters.AddWithValue("@p_telefono", telefono ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@p_email", email ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@p_direccion", direccion ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@p_tipo_empleado", tipoEmpleado ?? (object)DBNull.Value);
+
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    public async Task DesactivarEmpleadoAsync(int idEmpleado)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("DesactivarEmpleado", c)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+
+        cmd.Parameters.AddWithValue("@p_id_empleado", idEmpleado);
+
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    private static EmpleadoConsulta MapearEmpleado(MySqlDataReader reader)
+    {
+        return new EmpleadoConsulta
+        {
+            IdEmpleado = reader.GetInt32("id_empleado"),
+            IdPersona = reader.GetInt32("id_persona"),
+            Dni = reader.IsDBNull(reader.GetOrdinal("dni"))
+                ? null : reader.GetString("dni"),
+            Nombre = reader.GetString("nombre"),
+            Apellido = reader.GetString("apellido"),
+            Telefono = reader.IsDBNull(reader.GetOrdinal("telefono"))
+                ? null : reader.GetString("telefono"),
+            Email = reader.IsDBNull(reader.GetOrdinal("email"))
+                ? null : reader.GetString("email"),
+            Direccion = reader.IsDBNull(reader.GetOrdinal("direccion"))
+                ? null : reader.GetString("direccion"),
+            TipoEmpleado = reader.IsDBNull(reader.GetOrdinal("tipo_empleado"))
+                ? null : reader.GetString("tipo_empleado"),
+            FechaIngreso = reader.IsDBNull(reader.GetOrdinal("fecha_ingreso"))
+                ? null : reader.GetDateTime("fecha_ingreso"),
+            Estado = reader.IsDBNull(reader.GetOrdinal("estado"))
+                ? null : reader.GetString("estado")
+        };
+    }
+
+
 }
 
 

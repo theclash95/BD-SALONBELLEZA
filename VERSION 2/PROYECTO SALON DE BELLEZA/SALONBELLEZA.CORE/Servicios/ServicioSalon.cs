@@ -164,4 +164,64 @@ public class ServicioSalon
     }
 
 
+    // ===============================
+    // MÉTODOS DE EMPLEADOS
+    // ===============================
+
+    public Task<IEnumerable<EmpleadoConsulta>> ObtenerEmpleadosAsync()
+    {
+        return _repo.ObtenerEmpleadosAsync();
+    }
+
+    public Task<EmpleadoConsulta?> ObtenerEmpleadoPorIdAsync(int idEmpleado)
+    {
+        return _repo.ObtenerEmpleadoPorIdAsync(idEmpleado);
+    }
+
+    public Task<IEnumerable<EmpleadoConsulta>> BuscarEmpleadosAsync(string termino)
+    {
+        if (string.IsNullOrWhiteSpace(termino))
+            throw new ArgumentException("El término de búsqueda es obligatorio.");
+
+        return _repo.BuscarEmpleadosAsync(termino);
+    }
+
+    public Task ActualizarEmpleadoAsync(
+        int idEmpleado,
+        string? dni,
+        string nombre,
+        string apellido,
+        string? telefono,
+        string? email,
+        string? direccion,
+        string? tipoEmpleado)
+    {
+        if (idEmpleado <= 0)
+            throw new ArgumentException("El ID del empleado no es válido.");
+
+        if (string.IsNullOrWhiteSpace(nombre) ||
+            string.IsNullOrWhiteSpace(apellido))
+            throw new ArgumentException("Nombre y apellido son obligatorios.");
+
+        return _repo.ActualizarEmpleadoAsync(
+            idEmpleado,
+            dni,
+            nombre,
+            apellido,
+            telefono,
+            email,
+            direccion,
+            tipoEmpleado);
+    }
+
+    public Task DesactivarEmpleadoAsync(int idEmpleado)
+    {
+        if (idEmpleado <= 0)
+            throw new ArgumentException("El ID del empleado no es válido.");
+
+        return _repo.DesactivarEmpleadoAsync(idEmpleado);
+    }
+
+
+
 }

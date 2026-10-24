@@ -1,9 +1,14 @@
-PENDIENTES
-Creear metodos de almacenamiento al final es una banda esto jaj
+PENDIENTES: PARA QUE ESTE EN CONDICION DE COMPLETO !
+
+1)Creear metodos de almacenamiento en base de datos (YA ESTA TODOS EN LA DB)
+2)CREAR CLASES DE LOS METODOS Y LOS LLAMADOS DE CADA UNA EN VISUAL C# 
+3)CREAR LOS LLAMADOS EN BRUNO Y probar que funcione
+"ESOS SERIAN LOS REQUISITOS SI CUMPLEN LAS 3 CAMBIAR A COMPLETO
+
 
 Módulo	Estado
- Clientes   			Completo
-‍ Empleados  			en proceso -- ALE
+ Clientes   			Completo DB METODOS Y BRUNO
+‍ Empleados  			Completo DB METODOS Y BRUNO
  Categorías de servicios	en proceso -- X
  Servicios			en proceso  -- ALE
  Turnos				en proceso  -- ALE
