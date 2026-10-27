@@ -174,6 +174,58 @@ public class SalonRepositorio : ISalonRepositorio
     public Task<int> CrearTurnoAsync(Turno t)=>EjecutarIdAsync("CrearTurno",
         ("p_id_cliente",null,t.IdCliente),("p_id_empleado",null,t.IdEmpleado),("p_fecha",null,t.Fecha.Date),
         ("p_hora",null,t.Hora),("p_observacion",null,t.Observacion));
+
+
+
+    // ===============================
+    // CONSULTAS Y OPERACIONES DE TURNOS
+    // ===============================
+
+    public async Task<IEnumerable<TurnoConsulta>> ObtenerTurnosAsync()
+    {
+        var lista = new List<TurnoConsulta>();
+
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("ObtenerTurnos", c);
+
+        cmd.CommandType = CommandType.StoredProcedure;
+
+        using var reader = await cmd.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync())
+        {
+            lista.Add(new TurnoConsulta
+            {
+                IdTurno = Convert.ToInt32(reader["id_turno"]),
+                IdCliente = Convert.ToInt32(reader["id_cliente"]),
+                NombreCliente = Convert.ToString(reader["nombre_cliente"]),
+                IdEmpleado = Convert.ToInt32(reader["id_empleado"]),
+                NombreEmpleado = Convert.ToString(reader["nombre_empleado"]),
+                Fecha = Convert.ToDateTime(reader["fecha"]),
+                Hora = TimeSpan.Parse(reader["hora"].ToString()!),
+                Estado = reader["estado"] == DBNull.Value
+                    ? null
+                    : Convert.ToString(reader["estado"]),
+                Observacion = reader["observacion"] == DBNull.Value
+                    ? null
+                    : Convert.ToString(reader["observacion"])
+            });
+        }
+
+        return lista;
+    }
+
+    public Task CambiarEstadoTurnoAsync(int idTurno, string estado)
+    {
+        return EjecutarAsync(
+            "CambiarEstadoTurno",
+            ("p_id_turno", null, (object)idTurno),
+            ("p_estado", null, (object)estado)
+        );
+    }
+
+
+
     public Task<int> AgregarServicioATurnoAsync(int it,int is_,decimal d)=>EjecutarIdAsync("AgregarServicioATurno",
         ("p_id_turno",null,it),("p_id_servicio",null,is_),("p_descuento",null,d));
 

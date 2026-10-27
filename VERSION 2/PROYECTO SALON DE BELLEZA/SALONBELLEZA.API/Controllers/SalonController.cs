@@ -244,6 +244,60 @@ public class SalonController : ControllerBase
     public Task<IActionResult> Turno(TurnoRequest r) =>
         Ejecutar(()=>_servicio.CrearTurnoAsync(new Turno{IdCliente=r.IdCliente,IdEmpleado=r.IdEmpleado,Fecha=r.Fecha,Hora=r.Hora,Observacion=r.Observacion}));
 
+
+
+    [HttpGet("turnos")]
+    public async Task<IActionResult> ObtenerTurnos()
+    {
+        try
+        {
+            var turnos = await _servicio.ObtenerTurnosAsync();
+            return Ok(turnos);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al obtener los turnos.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+    [HttpPut("turnos/{idTurno:int}/estado")]
+    public async Task<IActionResult> CambiarEstadoTurno(
+    int idTurno,
+    [FromBody] CambiarEstadoTurnoRequest request)
+    {
+        try
+        {
+            if (idTurno <= 0)
+                return BadRequest(new { mensaje = "El ID del turno debe ser mayor que cero." });
+
+            var turnos = await _servicio.ObtenerTurnosAsync();
+
+            if (!turnos.Any(t => t.IdTurno == idTurno))
+                return NotFound(new { mensaje = "No se encontró el turno." });
+
+            await _servicio.CambiarEstadoTurnoAsync(idTurno, request.Estado);
+
+            return Ok(new { mensaje = "Estado del turno actualizado correctamente." });
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { mensaje = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al cambiar el estado del turno.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+
     [HttpPost("ventas")]
     public Task<IActionResult> CrearVenta(VentaRequest r) =>
     Ejecutar(() => _servicio.CrearVentaDesdeTurnoAsync(

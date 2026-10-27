@@ -123,6 +123,45 @@ public class ServicioSalon
         if(t.IdCliente<=0||t.IdEmpleado<=0) throw new ArgumentException("Cliente y empleado son obligatorios.");
         return _repo.CrearTurnoAsync(t);
     }
+
+
+
+    // ===============================
+    // CONSULTAS Y OPERACIONES DE TURNOS
+    // ===============================
+
+    public Task<IEnumerable<TurnoConsulta>> ObtenerTurnosAsync()
+    {
+        return _repo.ObtenerTurnosAsync();
+    }
+
+    public async Task CambiarEstadoTurnoAsync(int idTurno, string estado)
+    {
+        if (idTurno <= 0)
+            throw new ArgumentException("El ID del turno debe ser mayor que cero.");
+
+        if (string.IsNullOrWhiteSpace(estado))
+            throw new ArgumentException("El estado del turno es obligatorio.");
+
+        estado = estado.Trim().ToUpperInvariant();
+
+        var estadosPermitidos = new[]
+        {
+            "PENDIENTE",
+            "CONFIRMADO",
+            "CANCELADO",
+            "COMPLETADO"
+        };
+
+        if (!estadosPermitidos.Contains(estado))
+            throw new ArgumentException(
+                "El estado debe ser PENDIENTE, CONFIRMADO, CANCELADO o COMPLETADO.");
+
+        await _repo.CambiarEstadoTurnoAsync(idTurno, estado);
+    }
+
+
+
     public Task<int> AgregarServicioATurnoAsync(int idTurno,int idServicio,decimal descuento)
     {
         if(idTurno<=0||idServicio<=0||descuento<0) throw new ArgumentException("Datos de detalle de turno inválidos.");

@@ -28,6 +28,13 @@ public interface ISalonRepositorio
 
 
     Task<int> CrearTurnoAsync(Turno t);
+
+
+    Task<IEnumerable<TurnoConsulta>> ObtenerTurnosAsync();
+
+    Task CambiarEstadoTurnoAsync(int idTurno, string estado);
+
+
     Task<int> AgregarServicioATurnoAsync(int idTurno,int idServicio,decimal descuento);
     Task<int> CrearVentaDesdeTurnoAsync(
     int idTurno,
