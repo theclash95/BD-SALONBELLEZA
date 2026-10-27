@@ -58,6 +58,66 @@ public class ServicioSalon
         if(s.IdCategoriaServicio<=0||string.IsNullOrWhiteSpace(s.Nombre)||s.Precio<0) throw new ArgumentException("Datos de servicio inválidos.");
         return _repo.RegistrarServicioAsync(s);
     }
+
+
+    // ===============================
+    // CONSULTAS Y OPERACIONES DE SERVICIOS
+    // ===============================
+
+    public Task<IEnumerable<ServicioConsulta>> ObtenerServiciosAsync()
+    {
+        return _repo.ObtenerServiciosAsync();
+    }
+
+    public async Task<ServicioConsulta?> ObtenerServicioPorIdAsync(int idServicio)
+    {
+        if (idServicio <= 0)
+            throw new ArgumentException("El ID del servicio no es válido.");
+
+        return await _repo.ObtenerServicioPorIdAsync(idServicio);
+    }
+
+    public Task ActualizarServicioAsync(
+        int idServicio,
+        int idCategoriaServicio,
+        string nombre,
+        string? descripcion,
+        decimal precio,
+        int? duracionMinuto)
+    {
+        if (idServicio <= 0)
+            throw new ArgumentException("El ID del servicio no es válido.");
+
+        if (idCategoriaServicio <= 0)
+            throw new ArgumentException("La categoría del servicio es obligatoria.");
+
+        if (string.IsNullOrWhiteSpace(nombre))
+            throw new ArgumentException("El nombre del servicio es obligatorio.");
+
+        if (precio < 0)
+            throw new ArgumentException("El precio no puede ser negativo.");
+
+        if (duracionMinuto.HasValue && duracionMinuto.Value <= 0)
+            throw new ArgumentException("La duración debe ser mayor que cero.");
+
+        return _repo.ActualizarServicioAsync(
+            idServicio,
+            idCategoriaServicio,
+            nombre,
+            descripcion,
+            precio,
+            duracionMinuto);
+    }
+
+    public Task DesactivarServicioAsync(int idServicio)
+    {
+        if (idServicio <= 0)
+            throw new ArgumentException("El ID del servicio no es válido.");
+
+        return _repo.DesactivarServicioAsync(idServicio);
+    }
+
+
     public Task<int> CrearTurnoAsync(Turno t)
     {
         if(t.IdCliente<=0||t.IdEmpleado<=0) throw new ArgumentException("Cliente y empleado son obligatorios.");

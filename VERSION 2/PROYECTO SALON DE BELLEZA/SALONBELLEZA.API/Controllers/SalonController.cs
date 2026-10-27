@@ -92,6 +92,154 @@ public class SalonController : ControllerBase
     public Task<IActionResult> Servicio(ServicioRequest r) =>
         Ejecutar(()=>_servicio.RegistrarServicioAsync(new Servicio{IdCategoriaServicio=r.IdCategoria,Nombre=r.Nombre,Descripcion=r.Descripcion,Precio=r.Precio,DuracionMinuto=r.Duracion}));
 
+
+    // ===============================
+    // CONSULTAS Y OPERACIONES DE SERVICIOS
+    // ===============================
+
+    // GET: api/salon/servicios
+    [HttpGet("servicios")]
+    public async Task<IActionResult> ObtenerServicios()
+    {
+        try
+        {
+            var servicios = await _servicio.ObtenerServiciosAsync();
+            return Ok(servicios);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al obtener los servicios.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+    // GET: api/salon/servicios/1
+    [HttpGet("servicios/{idServicio:int}")]
+    public async Task<IActionResult> ObtenerServicioPorId(int idServicio)
+    {
+        try
+        {
+            if (idServicio <= 0)
+                return BadRequest(new
+                {
+                    mensaje = "El ID del servicio debe ser mayor que cero."
+                });
+
+            var servicio = await _servicio.ObtenerServicioPorIdAsync(idServicio);
+
+            if (servicio == null)
+                return NotFound(new
+                {
+                    mensaje = "No se encontró el servicio."
+                });
+
+            return Ok(servicio);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al obtener el servicio.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+    // PUT: api/salon/servicios/1
+    [HttpPut("servicios/{idServicio:int}")]
+    public async Task<IActionResult> ActualizarServicio(
+        int idServicio,
+        [FromBody] ServicioRequest request)
+    {
+        try
+        {
+            if (idServicio <= 0)
+                return BadRequest(new
+                {
+                    mensaje = "El ID del servicio debe ser mayor que cero."
+                });
+
+            var existente = await _servicio.ObtenerServicioPorIdAsync(idServicio);
+
+            if (existente == null)
+                return NotFound(new
+                {
+                    mensaje = "No se encontró el servicio."
+                });
+
+            await _servicio.ActualizarServicioAsync(
+                idServicio,
+                request.IdCategoria,
+                request.Nombre,
+                request.Descripcion,
+                request.Precio,
+                request.Duracion);
+
+            return Ok(new
+            {
+                mensaje = "Servicio actualizado correctamente."
+            });
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { mensaje = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al actualizar el servicio.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+    // DELETE: api/salon/servicios/1
+    [HttpDelete("servicios/{idServicio:int}")]
+    public async Task<IActionResult> DesactivarServicio(int idServicio)
+    {
+        try
+        {
+            if (idServicio <= 0)
+                return BadRequest(new
+                {
+                    mensaje = "El ID del servicio debe ser mayor que cero."
+                });
+
+            var existente = await _servicio.ObtenerServicioPorIdAsync(idServicio);
+
+            if (existente == null)
+                return NotFound(new
+                {
+                    mensaje = "No se encontró el servicio."
+                });
+
+            await _servicio.DesactivarServicioAsync(idServicio);
+
+            return Ok(new
+            {
+                mensaje = "Servicio desactivado correctamente."
+            });
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { mensaje = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                mensaje = "Error al desactivar el servicio.",
+                detalle = ex.Message
+            });
+        }
+    }
+
+
+
     [HttpPost("turnos")]
     public Task<IActionResult> Turno(TurnoRequest r) =>
         Ejecutar(()=>_servicio.CrearTurnoAsync(new Turno{IdCliente=r.IdCliente,IdEmpleado=r.IdEmpleado,Fecha=r.Fecha,Hora=r.Hora,Observacion=r.Observacion}));

@@ -75,6 +75,100 @@ public class SalonRepositorio : ISalonRepositorio
         ("p_precio",null,s.Precio),("p_duracion",null,s.DuracionMinuto));
 
 
+    // ===============================
+    // CONSULTAS Y OPERACIONES DE SERVICIOS
+    // ===============================
+
+    public async Task<IEnumerable<ServicioConsulta>> ObtenerServiciosAsync()
+    {
+        var lista = new List<ServicioConsulta>();
+
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("ObtenerServicios", c);
+        cmd.CommandType = CommandType.StoredProcedure;
+
+        using var reader = await cmd.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync())
+        {
+            lista.Add(MapearServicioConsulta(reader));
+        }
+
+        return lista;
+    }
+
+    public async Task<ServicioConsulta?> ObtenerServicioPorIdAsync(int idServicio)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("ObtenerServicioPorId", c);
+        cmd.CommandType = CommandType.StoredProcedure;
+
+        cmd.Parameters.AddWithValue("p_id_servicio", idServicio);
+
+        using var reader = await cmd.ExecuteReaderAsync();
+
+        if (await reader.ReadAsync())
+        {
+            return MapearServicioConsulta(reader);
+        }
+
+        return null;
+    }
+
+    public Task ActualizarServicioAsync(
+        int idServicio,
+        int idCategoriaServicio,
+        string nombre,
+        string? descripcion,
+        decimal precio,
+        int? duracionMinuto)
+    {
+        return EjecutarAsync(
+            "ActualizarServicio",
+            ("p_id_servicio", null, (object)idServicio),
+            ("p_id_categoria", null, (object)idCategoriaServicio),
+            ("p_nombre", null, (object)nombre),
+            ("p_descripcion", null, (object?)descripcion),
+            ("p_precio", null, (object)precio),
+            ("p_duracion", null, (object?)duracionMinuto)
+        );
+    }
+
+    public Task DesactivarServicioAsync(int idServicio)
+    {
+        return EjecutarAsync(
+            "DesactivarServicio",
+            ("p_id_servicio", null, (object)idServicio)
+        );
+    }
+
+    private static ServicioConsulta MapearServicioConsulta(
+        MySqlDataReader reader)
+    {
+        return new ServicioConsulta
+        {
+            IdServicio = Convert.ToInt32(reader["id_servicio"]),
+            IdCategoriaServicio =
+                Convert.ToInt32(reader["id_categoria_servicio"]),
+            NombreCategoria = reader["nombre_categoria"] == DBNull.Value
+                ? null
+                : Convert.ToString(reader["nombre_categoria"]),
+            Nombre = Convert.ToString(reader["nombre"]) ?? string.Empty,
+            Descripcion = reader["descripcion"] == DBNull.Value
+                ? null
+                : Convert.ToString(reader["descripcion"]),
+            Precio = Convert.ToDecimal(reader["precio"]),
+            DuracionMinuto = reader["duracion_minuto"] == DBNull.Value
+                ? null
+                : Convert.ToInt32(reader["duracion_minuto"]),
+            Estado = reader["estado"] == DBNull.Value
+                ? null
+                : Convert.ToString(reader["estado"])
+        };
+    }
+
+
+
 
 
     public Task<int> CrearTurnoAsync(Turno t)=>EjecutarIdAsync("CrearTurno",

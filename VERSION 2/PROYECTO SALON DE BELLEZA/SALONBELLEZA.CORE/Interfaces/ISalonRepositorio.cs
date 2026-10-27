@@ -10,6 +10,23 @@ public interface ISalonRepositorio
     Task<int> RegistrarProveedorAsync(Proveedor p);
     Task<int> RegistrarCompraAsync(int idProveedor,int idProducto,int cantidad,decimal precioCosto,string? observacion);
     Task<int> RegistrarServicioAsync(Servicio s);
+
+
+    Task<IEnumerable<ServicioConsulta>> ObtenerServiciosAsync();
+
+    Task<ServicioConsulta?> ObtenerServicioPorIdAsync(int idServicio);
+
+    Task ActualizarServicioAsync(
+        int idServicio,
+        int idCategoriaServicio,
+        string nombre,
+        string? descripcion,
+        decimal precio,
+        int? duracionMinuto);
+
+    Task DesactivarServicioAsync(int idServicio);
+
+
     Task<int> CrearTurnoAsync(Turno t);
     Task<int> AgregarServicioATurnoAsync(int idTurno,int idServicio,decimal descuento);
     Task<int> CrearVentaDesdeTurnoAsync(
