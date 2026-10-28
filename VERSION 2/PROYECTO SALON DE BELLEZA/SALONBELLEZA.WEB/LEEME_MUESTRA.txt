@@ -1,0 +1,16 @@
+BARBER CLUB — VERSIÓN VISUAL PARA LA MUESTRA
+
+Esta versión refina la identidad visual de Barbería Masculina Premium y conserva el login web de demostración.
+
+Para probar:
+1. Extraer la carpeta SALONBELLEZA.WEB.
+2. Abrirla en Visual Studio Code.
+3. Ejecutar index.html con Live Server.
+4. Credenciales de demostración: admin / Barberia2026!
+5. Tener la API actual en ejecución para probar las estadísticas y los módulos conectados.
+
+IMPORTANTE:
+- Se modificaron únicamente estilos CSS y se agregó este archivo informativo.
+- No se modificaron archivos C#, controladores, endpoints ni la base de datos.
+- El login es solo de demostración en el navegador, no es autenticación segura para producción.
+- Las mejoras visuales no sustituyen la prueba funcional de cada pantalla antes de la presentación.

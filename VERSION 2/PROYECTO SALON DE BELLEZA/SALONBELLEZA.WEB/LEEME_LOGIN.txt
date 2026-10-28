@@ -1,0 +1,12 @@
+BARBERÍA MASCULINA - LOGIN WEB DE DEMOSTRACIÓN
+
+INICIO:
+1. Extraer la carpeta SALONBELLEZA.WEB.
+2. Abrir index.html con Live Server. Si no hay sesión, se abrirá login.html.
+3. Credenciales de demostración:
+   Usuario: admin
+   Contraseña: Barberia2026!
+4. Para cerrar sesión, usar el botón del menú lateral.
+
+IMPORTANTE:
+Este login es únicamente del lado del navegador y sirve como demostración visual/local. Las credenciales están en js/login.js y pueden inspeccionarse; sessionStorage también puede manipularse. No es una medida de seguridad real y no protege la API. Para producción, la autenticación debe validarse en el backend. No se modificó el proyecto C# ni la base de datos.

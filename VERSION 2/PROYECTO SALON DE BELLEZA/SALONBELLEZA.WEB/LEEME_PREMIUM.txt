@@ -1,0 +1,17 @@
+BARBERIA MASCULINA - PLANTILLA PREMIUM
+
+Esta versión mejora la identidad visual de la web con una estética premium: negro carbón, marfil y dorado cálido.
+
+IMPORTANTE:
+- Solo se modificó el diseño CSS de la web y se agregó este archivo informativo.
+- No se modificaron archivos C#, la API, los endpoints ni la base de datos MySQL.
+- Los archivos JavaScript y HTML de la versión anterior se conservan para mantener las conexiones existentes.
+
+INSTALACIÓN:
+1. Extraer esta carpeta en una ubicación nueva, sin sobrescribir la versión anterior.
+2. Abrir la carpeta SALONBELLEZA.WEB en Visual Studio Code.
+3. Ejecutar index.html con Live Server.
+4. Mantener la API ejecutándose en https://localhost:7180.
+5. Probar panel, clientes, empleados, turnos y servicios.
+
+El diseño se actualizó, pero se recomienda probar cada pantalla con la API activa para confirmar su funcionamiento en el entorno local.

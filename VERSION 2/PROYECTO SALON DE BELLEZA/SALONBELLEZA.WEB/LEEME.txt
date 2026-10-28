@@ -1,0 +1,29 @@
+SALONBELLEZA.WEB - WEB ADMINISTRATIVA - BARBERÍA MASCULINA
+
+CONTENIDO
+- index.html: panel principal e indicadores
+- turnos.html: listado, filtros, creación y cambio de estado
+- clientes.html: listado, búsqueda, alta, edición y desactivación
+- empleados.html: listado, alta, edición y desactivación
+- servicios.html: catálogo, alta, edición y desactivación
+- css/app.css: diseño compartido adaptable
+- js/: lógica de cada módulo y funciones comunes
+
+CÓMO EJECUTAR
+1. Extraé la carpeta SALONBELLEZA.WEB en una ubicación de trabajo.
+2. Abrí esa carpeta en Visual Studio Code.
+3. Ejecutá Live Server desde index.html.
+4. Mantené la API ASP.NET Core ejecutándose en https://localhost:7180.
+5. Si Chrome muestra advertencia del certificado HTTPS, abrí https://localhost:7180 desde el navegador y aceptá el certificado de desarrollo si corresponde.
+
+IMPORTANTE
+- La API está configurada en js/common.js como https://localhost:7180. Cambiá API_URL si tu puerto es distinto.
+- La API debe permitir CORS para http://127.0.0.1:5500 y http://localhost:5500.
+- Los endpoints de turnos y clientes se basan en los probados en la conversación y la colección de Bruno.
+- La colección de Bruno confirma GET/POST/PUT/DELETE para clientes y empleados y POST para servicios. Los endpoints GET/PUT/DELETE de servicios se usan según la implementación del proyecto descrita previamente; si alguno no existe en tu API, la pantalla mostrará el error y habrá que ajustar esa operación.
+- Para crear turnos se ingresan los ID de cliente y empleado, tal como espera el endpoint actual.
+- No incluye autenticación de usuarios porque no aparece en la colección compartida.
+
+PERSONALIZACIÓN DE BARBERÍA
+- Se adaptaron únicamente los textos y estilos de la web para una barbería masculina.
+- La API_URL y las rutas /api/salon/... se mantienen exactamente como estaban para no modificar ni exigir cambios en el proyecto C# o MySQL.
