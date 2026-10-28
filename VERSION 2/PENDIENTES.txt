@@ -9,11 +9,11 @@ PENDIENTES: PARA QUE ESTE EN CONDICION DE COMPLETO !
 Módulo	Estado
  Clientes   			Completo DB METODOS Y BRUNO
 ‍ Empleados  			Completo DB METODOS Y BRUNO
- Categorías de servicios	en proceso -- X
+ Categorías de servicios	en proceso -- NAZA 
  Servicios			en proceso  -- ALE
  Turnos				en proceso  -- ALE
- Categorías de productos	en proceso -- X
- Productos			en proceso -- X
+ Categorías de productos	en proceso -- NAZA
+ Productos			en proceso -- NAZA 
  Stock				en proceso  -- X
  Proveedores			en proceso -- X
  Compras			en proceso  -- SAUL
