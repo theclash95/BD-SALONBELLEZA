@@ -1,0 +1,6 @@
+info:
+  name: Pagos
+  type: folder
+
+request:
+  auth: inherit

@@ -1,0 +1,57 @@
+info:
+  name: post /api/Productos
+  type: http
+  seq: 1
+  tags:
+    - Productos
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/Productos"
+  body:
+    type: json
+    data: |-
+      {
+        "idCategoriaProducto": 0,
+        "codigo": "",
+        "nombre": "",
+        "descripcion": "",
+        "precioCosto": 0,
+        "precioVenta": 0,
+        "stock": 0,
+        "stockMinimo": 0
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Productos"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "idCategoriaProducto": 0,
+            "codigo": "",
+            "nombre": "",
+            "descripcion": "",
+            "precioCosto": 0,
+            "precioVenta": 0,
+            "stock": 0,
+            "stockMinimo": 0
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

@@ -1,0 +1,51 @@
+info:
+  name: post /api/Compras
+  type: http
+  seq: 2
+  tags:
+    - Compras
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/Compras"
+  body:
+    type: json
+    data: |-
+      {
+        "idProveedor": 0,
+        "idProducto": 0,
+        "cantidad": 0,
+        "precioCosto": 0,
+        "observacion": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Compras"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "idProveedor": 0,
+            "idProducto": 0,
+            "cantidad": 0,
+            "precioCosto": 0,
+            "observacion": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

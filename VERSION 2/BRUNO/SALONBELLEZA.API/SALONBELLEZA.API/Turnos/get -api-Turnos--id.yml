@@ -1,0 +1,39 @@
+info:
+  name: get /api/Turnos/:id
+  type: http
+  seq: 3
+  tags:
+    - Turnos
+
+http:
+  method: GET
+  url: https://localhost:7180/api/Turnos/:id
+  params:
+    - name: id
+      value: ""
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Turnos/:id"
+      method: GET
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

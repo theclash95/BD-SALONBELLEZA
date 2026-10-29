@@ -1,0 +1,6 @@
+info:
+  name: Ventas
+  type: folder
+
+request:
+  auth: inherit

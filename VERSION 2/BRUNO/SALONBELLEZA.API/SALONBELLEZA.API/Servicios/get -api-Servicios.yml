@@ -1,0 +1,31 @@
+info:
+  name: get /api/Servicios
+  type: http
+  seq: 1
+  tags:
+    - Servicios
+
+http:
+  method: GET
+  url: https://localhost:7180/api/Servicios
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Servicios"
+      method: GET
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

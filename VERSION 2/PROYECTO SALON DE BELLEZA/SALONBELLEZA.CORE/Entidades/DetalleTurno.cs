@@ -1,11 +1,28 @@
-namespace SALONBELLEZA.CORE.Entidades;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class DetalleTurno
+namespace SALONBELLEZA.CORE.Entidades
 {
-    public int IdDetalleTurno { get; set; }
-    public int IdTurno { get; set; }
-    public int IdServicio { get; set; }
-    public decimal? PrecioUnitario { get; set; }
-    public decimal? Descuento { get; set; }
-    public decimal? Subtotal { get; set; }
+    [Table("detalle_turno")]
+    public class DetalleTurno
+    {
+        [Key]
+        [Column("id_detalle_turno")]
+        public int IdDetalleTurno { get; set; }
+
+        [Column("id_turno")]
+        public int IdTurno { get; set; }
+
+        [Column("id_servicio")]
+        public int IdServicio { get; set; }
+
+        [Column("precio_unitario")]
+        public decimal? PrecioUnitario { get; set; }
+
+        [Column("descuento")]
+        public decimal? Descuento { get; set; }
+
+        [Column("subtotal")]
+        public decimal? Subtotal { get; set; }
+    }
 }

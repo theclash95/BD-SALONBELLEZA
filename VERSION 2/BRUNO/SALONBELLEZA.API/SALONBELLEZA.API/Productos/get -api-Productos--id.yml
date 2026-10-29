@@ -1,0 +1,39 @@
+info:
+  name: get /api/Productos/:id
+  type: http
+  seq: 3
+  tags:
+    - Productos
+
+http:
+  method: GET
+  url: https://localhost:7180//api/Productos/:3
+  params:
+    - name: "3"
+      value: ""
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Productos/:id"
+      method: GET
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

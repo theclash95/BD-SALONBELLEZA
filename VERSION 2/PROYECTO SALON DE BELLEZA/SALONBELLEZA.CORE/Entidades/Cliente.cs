@@ -1,10 +1,29 @@
-namespace SALONBELLEZA.CORE.Entidades;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class Cliente
+namespace SALONBELLEZA.CORE.Entidades
 {
-    public int IdCliente { get; set; }
-    public int IdPersona { get; set; }
-    public string? CategoriaCliente { get; set; }
-    public DateTime? FechaRegistro { get; set; }
-    public string? Estado { get; set; }
+    [Table("clientes")]
+    public class Cliente
+    {
+        [Key]
+        [Column("id_cliente")]
+        public int IdCliente { get; set; }
+
+        // Clave foránea que une al Cliente con la tabla Personas
+        [Column("id_persona")]
+        public int IdPersona { get; set; }
+
+        [Column("categoria_cliente")]
+        [MaxLength(50)]
+        public string? CategoriaCliente { get; set; }
+
+        [Column("fecha_registro")]
+        public DateTime? FechaRegistro { get; set; }
+
+        [Column("estado")]
+        [MaxLength(50)]
+        public string? Estado { get; set; }
+    }
 }

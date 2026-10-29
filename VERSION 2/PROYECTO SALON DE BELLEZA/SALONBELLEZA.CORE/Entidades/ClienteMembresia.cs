@@ -1,12 +1,34 @@
-namespace SALONBELLEZA.CORE.Entidades;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class ClienteMembresia
+namespace SALONBELLEZA.CORE.Entidades
 {
-    public int IdClienteMembresia { get; set; }
-    public int IdCliente { get; set; }
-    public int IdMembresia { get; set; }
-    public DateTime? FechaInicio { get; set; }
-    public DateTime? FechaFin { get; set; }
-    public string? Estado { get; set; }
-    public string? Observacion { get; set; }
+    [Table("cliente_membresia")]
+    public class ClienteMembresia
+    {
+        [Key]
+        [Column("id_cliente_membresia")]
+        public int IdClienteMembresia { get; set; }
+
+        [Column("id_cliente")]
+        public int IdCliente { get; set; }
+
+        [Column("id_membresia")]
+        public int IdMembresia { get; set; }
+
+        [Column("fecha_inicio")]
+        public DateTime? FechaInicio { get; set; }
+
+        [Column("fecha_fin")]
+        public DateTime? FechaFin { get; set; }
+
+        [Column("estado")]
+        [MaxLength(50)]
+        public string? Estado { get; set; }
+
+        [Column("observacion")]
+        [MaxLength(255)]
+        public string? Observacion { get; set; }
+    }
 }

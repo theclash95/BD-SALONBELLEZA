@@ -1,0 +1,57 @@
+info:
+  name: patch /api/Productos/:id/stock
+  type: http
+  seq: 2
+  tags:
+    - Productos
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/api/Productos/:id/stock"
+  params:
+    - name: id
+      value: ""
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "idProducto": 0,
+        "cantidad": 0,
+        "tipoMovimiento": "",
+        "motivo": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Productos/:id/stock"
+      method: PATCH
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "idProducto": 0,
+            "cantidad": 0,
+            "tipoMovimiento": "",
+            "motivo": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

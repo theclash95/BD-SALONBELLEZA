@@ -1,0 +1,47 @@
+info:
+  name: post /api/Ventas/producto
+  type: http
+  seq: 4
+  tags:
+    - Ventas
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/Ventas/producto"
+  body:
+    type: json
+    data: |-
+      {
+        "idCliente": 0,
+        "idProducto": 0,
+        "cantidad": 0
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Ventas/producto"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "idCliente": 0,
+            "idProducto": 0,
+            "cantidad": 0
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

@@ -1,9 +1,24 @@
-namespace SALONBELLEZA.CORE.Entidades;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class CategoriaServicio
+namespace SALONBELLEZA.CORE.Entidades
 {
-    public int IdCategoriaServicio { get; set; }
-    public string Nombre { get; set; }
-    public string? Descripcion { get; set; }
-    public bool Activo { get; set; }
+    [Table("categorias_servicio")]
+    public class CategoriaServicio
+    {
+        [Key]
+        [Column("id_categoria_servicio")]
+        public int IdCategoriaServicio { get; set; }
+
+        [Column("nombre")]
+        [MaxLength(50)]
+        public string Nombre { get; set; } = string.Empty;
+
+        [Column("descripcion")]
+        [MaxLength(255)]
+        public string? Descripcion { get; set; }
+
+        [Column("activo")]
+        public bool Activo { get; set; } = true;
+    }
 }

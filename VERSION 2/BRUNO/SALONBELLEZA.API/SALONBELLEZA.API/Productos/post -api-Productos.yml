@@ -1,0 +1,57 @@
+info:
+  name: post /api/Productos
+  type: http
+  seq: 2
+  tags:
+    - Productos
+
+http:
+  method: POST
+  url: https://localhost:7180/api/Productos
+  body:
+    type: json
+    data: |-
+      {
+        "idCategoriaProducto": 1,
+        "codigo": "SH-001",
+        "nombre": "Shampoo Keratina",
+        "descripcion": "Shampoo de 500ml",
+        "precioCosto": 2500,
+        "precioVenta": 4500,
+        "stock": 20,
+        "stockMinimo": 5
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Productos"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "idCategoriaProducto": 0,
+            "codigo": "",
+            "nombre": "",
+            "descripcion": "",
+            "precioCosto": 0,
+            "precioVenta": 0,
+            "stock": 0,
+            "stockMinimo": 0
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

@@ -1,330 +1,73 @@
-using FluentValidation;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SALONBELLEZA.API.DTOs;
 using SALONBELLEZA.CORE.Entidades;
 using SALONBELLEZA.CORE.Servicios;
 
-namespace SALONBELLEZA.API.Controllers;
-
-[ApiController]
-[Route("api/salon")]
-public class SalonController : ControllerBase
+namespace SALONBELLEZA.API.Controllers
 {
-    private readonly ServicioSalon _servicio;
-    public SalonController(ServicioSalon servicio) => _servicio=servicio;
-
-    private async Task<IActionResult> Ejecutar(Func<Task<int>> accion)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class SalonController : ControllerBase
     {
-        try
+        private readonly ServicioSalon _servicio;
+        private readonly IMapper _mapper;
+
+        public SalonController(ServicioSalon servicio, IMapper mapper)
         {
-            var id=await accion();
-            return Ok(new { mensaje="Operación realizada correctamente.", id });
+            _servicio = servicio;
+            _mapper = mapper;
         }
-        catch(ArgumentException ex){ return BadRequest(new { mensaje=ex.Message }); }
-        catch(Exception ex){ return StatusCode(500,new { mensaje="Error al ejecutar la operación.", detalle=ex.Message }); }
+
+        // 1. GET: api/salon (Devuelve la info del salón)
+        [HttpGet]
+        public async Task<IActionResult> Obtener()
+        {
+            try
+            {
+                var salon = await _servicio.ObtenerSalonAsync();
+                var salonDto = _mapper.Map<SalonDto>(salon);
+                return Ok(salonDto);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Mensaje = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Mensaje = "Error interno", Detalle = ex.Message });
+            }
+        }
+
+        // 2. PUT: api/salon (Actualiza la info del salón)
+        [HttpPut]
+        public async Task<IActionResult> Actualizar([FromBody] ActualizarSalonRequest request)
+        {
+            try
+            {
+                // Necesitamos el ID del salón. Asumimos que es el 1 porque es un solo local.
+                // Si tuvieras varios, lo recibirías por URL.
+                int idSalon = 1;
+
+                await _servicio.ActualizarSalonAsync(
+                    idSalon,
+                    request.Nombre ?? string.Empty,
+                    request.Direccion ?? string.Empty,
+                    request.Telefono ?? string.Empty,
+                    request.Email ?? string.Empty,
+                    request.Logo ?? string.Empty
+                );
+
+                return Ok(new { Mensaje = "Datos del salón actualizados correctamente." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Mensaje = "Error interno", Detalle = ex.Message });
+            }
+        }
+
+        // 3. GET: api/salon/estado (Health check, para ver si la API responde)
+        [HttpGet("estado")]
+        public IActionResult Estado() => Ok(new { sistema = "SALONBELLEZA", estado = "API funcionando", fecha = DateTime.Now });
     }
-
-    [HttpPost("clientes")]
-    public async Task<IActionResult> RegistrarCliente(
-    RegistrarClienteRequest r,
-    [FromServices] IValidator<RegistrarClienteRequest> validator)
-    {
-        var resultado = await validator.ValidateAsync(r);
-
-        if (!resultado.IsValid)
-        {
-            var errores = resultado.Errors
-                .Select(e => e.ErrorMessage)
-                .ToList();
-
-            return BadRequest(new
-            {
-                Mensaje = "Error de validación",
-                Errores = errores
-            });
-        }
-
-        return await Ejecutar(() => _servicio.RegistrarClienteAsync(
-            new Persona
-            {
-                Dni = r.Dni,
-                Nombre = r.Nombre,
-                Apellido = r.Apellido,
-                Telefono = r.Telefono,
-                Email = r.Email,
-                Direccion = r.Direccion
-            },
-            r.Categoria));
-    }
-
-    [HttpPost("empleados")]
-    public Task<IActionResult> RegistrarEmpleado(RegistrarEmpleadoRequest r) =>
-        Ejecutar(()=>_servicio.RegistrarEmpleadoAsync(new Persona{Dni=r.Dni,Nombre=r.Nombre,Apellido=r.Apellido,Telefono=r.Telefono,Email=r.Email,Direccion=r.Direccion},r.TipoEmpleado));
-
-    [HttpPost("categorias-producto")]
-    public Task<IActionResult> CategoriaProducto(CategoriaProductoRequest r) =>
-        Ejecutar(()=>_servicio.RegistrarCategoriaProductoAsync(r.Nombre,r.Descripcion));
-
-    [HttpPost("productos")]
-    public Task<IActionResult> Producto(ProductoRequest r) =>
-        Ejecutar(()=>_servicio.RegistrarProductoAsync(new Producto{IdCategoriaProducto=r.IdCategoriaProducto,Codigo=r.Codigo,Nombre=r.Nombre,Descripcion=r.Descripcion,PrecioCosto=r.PrecioCosto,PrecioVenta=r.PrecioVenta,StockActual=r.Stock,StockMinimo=r.StockMinimo}));
-
-    [HttpPost("productos/stock")]
-    public Task<IActionResult> Stock(StockRequest r) =>
-        Ejecutar(()=>_servicio.ActualizarStockProductoAsync(r.IdProducto,r.Cantidad,r.TipoMovimiento,r.Motivo));
-
-    [HttpPost("proveedores")]
-    public Task<IActionResult> Proveedor(ProveedorRequest r) =>
-        Ejecutar(()=>_servicio.RegistrarProveedorAsync(new Proveedor{RazonSocial=r.RazonSocial,Cuit=r.Cuit,Telefono=r.Telefono,Email=r.Email,Direccion=r.Direccion}));
-
-    [HttpPost("compras")]
-    public Task<IActionResult> Compra(CompraRequest r) =>
-        Ejecutar(()=>_servicio.RegistrarCompraAsync(r.IdProveedor,r.IdProducto,r.Cantidad,r.PrecioCosto,r.Observacion));
-
-    [HttpPost("categorias-servicio")]
-    public Task<IActionResult> RegistrarCategoriaServicio(CategoriaServicioRequest r) =>
-    Ejecutar(() => _servicio.RegistrarCategoriaServicioAsync(
-        r.Nombre,
-        r.Descripcion
-    ));
-
-    [HttpPost("servicios")]
-    public Task<IActionResult> Servicio(ServicioRequest r) =>
-        Ejecutar(()=>_servicio.RegistrarServicioAsync(new Servicio{IdCategoriaServicio=r.IdCategoria,Nombre=r.Nombre,Descripcion=r.Descripcion,Precio=r.Precio,DuracionMinuto=r.Duracion}));
-
-    [HttpPost("turnos")]
-    public Task<IActionResult> Turno(TurnoRequest r) =>
-        Ejecutar(()=>_servicio.CrearTurnoAsync(new Turno{IdCliente=r.IdCliente,IdEmpleado=r.IdEmpleado,Fecha=r.Fecha,Hora=r.Hora,Observacion=r.Observacion}));
-
-    [HttpPost("ventas")]
-    public Task<IActionResult> CrearVenta(VentaRequest r) =>
-    Ejecutar(() => _servicio.CrearVentaDesdeTurnoAsync(
-        r.IdTurno,
-        r.Descuento,
-        r.Observacion
-    ));
-
-
-    [HttpPost("turnos/servicios")]
-    public Task<IActionResult> DetalleTurno(DetalleTurnoRequest r) =>
-        Ejecutar(()=>_servicio.AgregarServicioATurnoAsync(r.IdTurno,r.IdServicio,r.Descuento));
-
-    [HttpPost("ventas/productos")]
-    public Task<IActionResult> VentaProducto(VentaProductoRequest r) =>
-        Ejecutar(()=>_servicio.RealizarVentaProductoAsync(r.IdCliente,r.IdProducto,r.Cantidad));
-
-
-    [HttpPost("pagos")]
-    public Task<IActionResult> Pago(PagoRequest r) =>
-        Ejecutar(()=>_servicio.RegistrarPagoAsync(new Pago{IdVenta=r.IdVenta,Monto=r.Monto,MetodoPago=r.MetodoPago,Referencia=r.Referencia}));
-
-    [HttpPost("facturas")]
-    public Task<IActionResult> Factura(FacturaRequest r) =>
-        Ejecutar(()=>_servicio.GenerarFacturaAsync(new Factura{IdVenta=r.IdVenta,NumeroFactura=r.NumeroFactura,TipoComprobante=r.TipoComprobante}));
-
-    [HttpPost("membresias")]
-    public Task<IActionResult> Membresia(MembresiaRequest r) =>
-        Ejecutar(()=>_servicio.CrearMembresiaAsync(new Membresia{NombrePlan=r.NombrePlan,Descripcion=r.Descripcion,Costo=r.Costo,DuracionDias=r.DuracionDias,PorcentajeDescuento=r.PorcentajeDescuento}));
-
-    [HttpPost("membresias/asignar")]
-    public Task<IActionResult> AsignarMembresia(AsignarMembresiaRequest r) =>
-        Ejecutar(()=>_servicio.AsignarMembresiaClienteAsync(new ClienteMembresia{IdCliente=r.IdCliente,IdMembresia=r.IdMembresia,Observacion=r.Observacion}));
-
-    [HttpGet("estado")]
-    public IActionResult Estado() => Ok(new { sistema="SALONBELLEZA", estado="API funcionando", fecha=DateTime.Now });
-
-
-    [HttpGet("clientes")]
-    public async Task<IActionResult> ObtenerClientes()
-    {
-        try
-        {
-            var clientes = await _servicio.ObtenerClientesAsync();
-
-            return Ok(clientes);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, new
-            {
-                mensaje = "Error al obtener los clientes.",
-                detalle = ex.Message
-            });
-        }
-    }
-
-
-    [HttpGet("clientes/{idCliente:int}")]
-    public async Task<IActionResult> ObtenerClientePorId(int idCliente)
-    {
-        try
-        {
-            if (idCliente <= 0)
-            {
-                return BadRequest(new
-                {
-                    mensaje = "El ID del cliente debe ser mayor que cero."
-                });
-            }
-
-            var cliente = await _servicio.ObtenerClientePorIdAsync(idCliente);
-
-            if (cliente == null)
-            {
-                return NotFound(new
-                {
-                    mensaje = "No se encontró el cliente."
-                });
-            }
-
-            return Ok(cliente);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, new
-            {
-                mensaje = "Error al obtener el cliente.",
-                detalle = ex.Message
-            });
-        }
-    }
-
-    [HttpGet("clientes/buscar")]
-    public async Task<IActionResult> BuscarClientes([FromQuery] string termino)
-    {
-        try
-        {
-            if (string.IsNullOrWhiteSpace(termino))
-            {
-                return BadRequest(new
-                {
-                    mensaje = "Debe ingresar un término de búsqueda."
-                });
-            }
-
-            var clientes = await _servicio.BuscarClientesAsync(termino);
-
-            if (!clientes.Any())
-            {
-                return NotFound(new
-                {
-                    mensaje = $"No se encontraron clientes para '{termino}'."
-                });
-            }
-
-            return Ok(clientes);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, new
-            {
-                mensaje = "Error al buscar clientes.",
-                detalle = ex.Message
-            });
-        }
-
-
-
-
-
-    }
-
-
-    [HttpPut("clientes/{idCliente:int}")]
-    public async Task<IActionResult> ActualizarCliente(
-    int idCliente,
-    [FromBody] ClienteActualizarRequest request)
-    {
-        try
-        {
-            if (idCliente <= 0)
-            {
-                return BadRequest(new
-                {
-                    mensaje = "El ID del cliente debe ser mayor que cero."
-                });
-            }
-
-            if (string.IsNullOrWhiteSpace(request.Nombre))
-            {
-                return BadRequest(new
-                {
-                    mensaje = "El nombre es obligatorio."
-                });
-            }
-
-            if (string.IsNullOrWhiteSpace(request.Apellido))
-            {
-                return BadRequest(new
-                {
-                    mensaje = "El apellido es obligatorio."
-                });
-            }
-
-            await _servicio.ActualizarClienteAsync(
-                idCliente,
-                request.Dni,
-                request.Nombre,
-                request.Apellido,
-                request.Telefono,
-                request.Email,
-                request.Direccion);
-
-            return Ok(new
-            {
-                mensaje = "Cliente actualizado correctamente."
-            });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, new
-            {
-                mensaje = "Error al actualizar el cliente.",
-                detalle = ex.Message
-            });
-        }
-    }
-
-
-    [HttpDelete("clientes/{idCliente:int}")]
-    public async Task<IActionResult> DesactivarCliente(int idCliente)
-    {
-        try
-        {
-            if (idCliente <= 0)
-            {
-                return BadRequest(new
-                {
-                    mensaje = "El ID del cliente debe ser mayor que cero."
-                });
-            }
-
-            var cliente = await _servicio.ObtenerClientePorIdAsync(idCliente);
-
-            if (cliente == null)
-            {
-                return NotFound(new
-                {
-                    mensaje = "No se encontró el cliente."
-                });
-            }
-
-            await _servicio.DesactivarClienteAsync(idCliente);
-
-            return Ok(new
-            {
-                mensaje = "Cliente desactivado correctamente."
-            });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, new
-            {
-                mensaje = "Error al desactivar el cliente.",
-                detalle = ex.Message
-            });
-        }
-    }
-
-
 }

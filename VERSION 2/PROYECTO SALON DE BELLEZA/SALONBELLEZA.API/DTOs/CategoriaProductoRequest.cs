@@ -1,7 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace SALONBELLEZA.API.DTOs;
 
 public class CategoriaProductoRequest
 {
-    public string Nombre { get; set; }
+    [Required(ErrorMessage = "El nombre es obligatorio.")]
+    public required string Nombre { get; set; }
+
     public string? Descripcion { get; set; }
 }

@@ -1,0 +1,59 @@
+info:
+  name: put /api/Proveedores/:id
+  type: http
+  seq: 4
+  tags:
+    - Proveedores
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/api/Proveedores/:id"
+  params:
+    - name: id
+      value: ""
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "razonSocial": "",
+        "cuit": "",
+        "telefono": "",
+        "email": "",
+        "direccion": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Proveedores/:id"
+      method: PUT
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "razonSocial": "",
+            "cuit": "",
+            "telefono": "",
+            "email": "",
+            "direccion": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

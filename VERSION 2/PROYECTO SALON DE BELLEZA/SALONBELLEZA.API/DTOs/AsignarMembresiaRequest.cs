@@ -1,8 +1,15 @@
-namespace SALONBELLEZA.API.DTOs;
+using System.ComponentModel.DataAnnotations;
 
-public class AsignarMembresiaRequest
+namespace SALONBELLEZA.API.DTOs
 {
-    public int IdCliente { get; set; }
-    public int IdMembresia { get; set; }
-    public string? Observacion { get; set; }
+    public class AsignarMembresiaRequest
+    {
+        [Required(ErrorMessage = "El cliente es obligatorio.")]
+        public int IdCliente { get; set; }
+
+        [Required(ErrorMessage = "La membresía es obligatoria.")]
+        public int IdMembresia { get; set; }
+
+        public string? Observacion { get; set; }
+    }
 }

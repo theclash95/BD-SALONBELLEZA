@@ -1,0 +1,6 @@
+info:
+  name: Compras
+  type: folder
+
+request:
+  auth: inherit

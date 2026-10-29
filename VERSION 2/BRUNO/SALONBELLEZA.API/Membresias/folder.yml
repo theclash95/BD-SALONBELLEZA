@@ -1,0 +1,6 @@
+info:
+  name: Membresias
+  type: folder
+
+request:
+  auth: inherit

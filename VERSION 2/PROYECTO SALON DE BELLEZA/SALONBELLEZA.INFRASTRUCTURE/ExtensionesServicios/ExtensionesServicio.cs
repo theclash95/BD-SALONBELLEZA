@@ -16,3 +16,19 @@ public static class ExtensionesServicio
         return services;
     }
 }
+
+[System.Serializable]
+internal class InvalidOperationException : System.Exception
+{
+    public InvalidOperationException()
+    {
+    }
+
+    public InvalidOperationException(string? message) : base(message)
+    {
+    }
+
+    public InvalidOperationException(string? message, System.Exception? innerException) : base(message, innerException)
+    {
+    }
+}

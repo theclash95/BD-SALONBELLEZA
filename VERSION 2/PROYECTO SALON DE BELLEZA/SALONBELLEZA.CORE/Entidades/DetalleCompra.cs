@@ -1,10 +1,25 @@
-namespace SALONBELLEZA.CORE.Entidades;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class DetalleCompra
+namespace SALONBELLEZA.CORE.Entidades
 {
-    public int IdDetalleCompra { get; set; }
-    public int IdCompra { get; set; }
-    public int IdProducto { get; set; }
-    public int Cantidad { get; set; }
-    public decimal PrecioCosto { get; set; }
+    [Table("detalle_compra")]
+    public class DetalleCompra
+    {
+        [Key]
+        [Column("id_detalle_compra")]
+        public int IdDetalleCompra { get; set; }
+
+        [Column("id_compra")]
+        public int IdCompra { get; set; }
+
+        [Column("id_producto")]
+        public int IdProducto { get; set; }
+
+        [Column("cantidad")]
+        public int Cantidad { get; set; }
+
+        [Column("precio_costo")]
+        public decimal PrecioCosto { get; set; }
+    }
 }

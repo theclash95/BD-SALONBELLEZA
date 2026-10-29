@@ -1,12 +1,35 @@
-namespace SALONBELLEZA.CORE.Entidades;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class Pago
+namespace SALONBELLEZA.CORE.Entidades
 {
-    public int IdPago { get; set; }
-    public int IdVenta { get; set; }
-    public DateTime? FechaPago { get; set; }
-    public decimal? Monto { get; set; }
-    public string? MetodoPago { get; set; }
-    public string? Estado { get; set; }
-    public string? Referencia { get; set; }
+    [Table("pagos")]
+    public class Pago
+    {
+        [Key]
+        [Column("id_pago")]
+        public int IdPago { get; set; }
+
+        [Column("id_venta")]
+        public int IdVenta { get; set; }
+
+        [Column("fecha_pago")]
+        public DateTime? FechaPago { get; set; }
+
+        [Column("monto")]
+        public decimal? Monto { get; set; }
+
+        [Column("metodo_pago")]
+        [MaxLength(50)]
+        public string? MetodoPago { get; set; }
+
+        [Column("estado")]
+        [MaxLength(50)]
+        public string? Estado { get; set; }
+
+        [Column("referencia")]
+        [MaxLength(100)]
+        public string? Referencia { get; set; }
+    }
 }

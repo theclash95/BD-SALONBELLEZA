@@ -1,10 +1,11 @@
-﻿namespace SALONBELLEZA.API.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SALONBELLEZA.API.DTOs;
+
+public class CategoriaServicioRequest
 {
-    public class CategoriaServicioRequest
-    {
-        public string Nombre { get; set; } = string.Empty;
+    [Required(ErrorMessage = "El nombre es obligatorio.")]
+    public string Nombre { get; set; } = string.Empty;
 
-        public string? Descripcion { get; set; }
-    }
+    public string? Descripcion { get; set; }
 }
-
