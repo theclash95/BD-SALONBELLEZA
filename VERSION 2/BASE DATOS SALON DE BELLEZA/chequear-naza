@@ -1,0 +1,66 @@
+  
+    // LO QUE FALTABA (CATEGORÍAS, PRODUCTOS, PROVEEDORES Y MEMBRESÍAS)
+   
+
+    // --- CATEGORÍA PRODUCTOS ---
+    public async Task ActualizarCategoriaProductoAsync(int idCategoria, string nombre, string? descripcion)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("ActualizarCategoriaProducto", c) { CommandType = CommandType.StoredProcedure };
+        cmd.Parameters.AddWithValue("@p_id_categoria", idCategoria);
+        cmd.Parameters.AddWithValue("@p_nombre", nombre);
+        cmd.Parameters.AddWithValue("@p_descripcion", descripcion ?? (object)DBNull.Value);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    public async Task DesactivarCategoriaProductoAsync(int idCategoria)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("DesactivarCategoriaProducto", c) { CommandType = CommandType.StoredProcedure };
+        cmd.Parameters.AddWithValue("@p_id_categoria", idCategoria);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    // --- CATEGORÍAS DE SERVICIOS ---
+    public async Task ActualizarCategoriaServiceAsync(int idCategoria, string nombre, string? descripcion)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("ActualizarCategoriaService", c) { CommandType = CommandType.StoredProcedure };
+        cmd.Parameters.AddWithValue("@p_id_categoria", idCategoria);
+        cmd.Parameters.AddWithValue("@p_nombre", nombre);
+        cmd.Parameters.AddWithValue("@p_descripcion", descripcion ?? (object)DBNull.Value);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    public async Task DesactivarCategoriaServiceAsync(int idCategoria)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("DesactivarCategoriaService", c) { CommandType = CommandType.StoredProcedure };
+        cmd.Parameters.AddWithValue("@p_id_categoria", idCategoria);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    // --- PRODUCTOS ---
+    public async Task ActualizarProductoAsync(int idProducto, int idCategoria, string codigo, string nombre, string? descripcion, decimal precioCosto, decimal precioVenta, int stockActual, int stockMinimo)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("ActualizarProducto", c) { CommandType = CommandType.StoredProcedure };
+        cmd.Parameters.AddWithValue("@p_id_producto", idProducto);
+        cmd.Parameters.AddWithValue("@p_id_categoria", idCategoria);
+        cmd.Parameters.AddWithValue("@p_codigo", codigo);
+        cmd.Parameters.AddWithValue("@p_nombre", nombre);
+        cmd.Parameters.AddWithValue("@p_descripcion", descripcion ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@p_precio_costo", precioCosto);
+        cmd.Parameters.AddWithValue("@p_precio_venta", precioVenta);
+        cmd.Parameters.AddWithValue("@p_stock", stockActual);
+        cmd.Parameters.AddWithValue("@p_stock_minimo", stockMinimo);
+        await cmd.ExecuteNonQueryAsync();
+    }
+
+    public async Task DesactivarProductoAsync(int idProducto)
+    {
+        using var c = (MySqlConnection)await _conn.ObtenerConexionAsync();
+        using var cmd = new MySqlCommand("DesactivarProducto", c) { CommandType = CommandType.StoredProcedure };
+        cmd.Parameters.AddWithValue("@p_id_producto", idProducto);
+        await cmd.ExecuteNonQueryAsync();
+    }
