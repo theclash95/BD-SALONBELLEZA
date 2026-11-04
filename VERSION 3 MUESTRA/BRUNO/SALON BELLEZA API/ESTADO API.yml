@@ -1,0 +1,16 @@
+info:
+  name: ESTADO API
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: https://localhost:7180/api/salon/estado
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

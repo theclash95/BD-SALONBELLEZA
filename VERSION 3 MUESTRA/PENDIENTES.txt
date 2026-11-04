@@ -1,0 +1,18 @@
+PENDIENTES
+Creear metodos de almacenamiento al final es una banda esto jaj
+
+Módulo	Estado
+ Clientes   			Completo
+‍ Empleados  			Completo 
+ Categorías de servicios	Completo
+ Servicios			Completo
+ Turnos				Completo
+ Categorías de productos	Completo
+ Productos			Completo
+ Stock				Completo
+ Proveedores			Completo
+ Compras			Completo
+ Ventas				Completo
+ Pagos				Completo
+ Facturas			Completo
+ Membresías			Completo

@@ -1,0 +1,6 @@
+info:
+  name: Turnos
+  type: folder
+
+request:
+  auth: inherit

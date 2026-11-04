@@ -1,0 +1,5 @@
+name: SALON BELLEZA LOCAL
+variables:
+  - name: baseUrl
+    value: https://localhost:7180
+    description: ""

@@ -1,0 +1,27 @@
+info:
+  name: ACTUALIZAR CLIENTE POR ID
+  type: http
+  seq: 20
+
+http:
+  method: PUT
+  url: https://localhost:7180/api/salon/clientes/1
+  body:
+    type: json
+    data: |-
+      {
+        "dni": "30123456",
+        "nombre": "Juan",
+        "apellido": "Perez",
+        "telefono": "6666666666",
+        "email": "juan_nuevo@gmail.com",
+        "direccion": "Santa María"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

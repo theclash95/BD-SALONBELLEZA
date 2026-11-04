@@ -1,0 +1,45 @@
+info:
+  name: patch /api/Turnos/:id/estado
+  type: http
+  seq: 4
+  tags:
+    - Turnos
+
+http:
+  method: PATCH
+  url: https://localhost:7180/api/Turnos/:id/estado
+  params:
+    - name: id
+      value: ""
+      type: path
+  body:
+    type: json
+    data: "{}"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Turnos/:id/estado"
+      method: PATCH
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: "{}"
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

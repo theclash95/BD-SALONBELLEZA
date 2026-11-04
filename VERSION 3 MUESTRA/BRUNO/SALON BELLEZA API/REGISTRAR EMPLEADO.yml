@@ -1,0 +1,28 @@
+info:
+  name: REGISTRAR EMPLEADO
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/empleados
+  body:
+    type: json
+    data: |-
+      {
+        "dni": "28987654",
+        "nombre": "Maria",
+        "apellido": "Gomez",
+        "telefono": "3834987654",
+        "email": "maria@gmail.com",
+        "direccion": "Santa Maria",
+        "tipoEmpleado": "PROFESIONAL"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

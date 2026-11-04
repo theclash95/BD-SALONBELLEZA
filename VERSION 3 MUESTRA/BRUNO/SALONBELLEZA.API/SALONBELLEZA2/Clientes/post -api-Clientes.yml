@@ -1,0 +1,55 @@
+info:
+  name: post /api/Clientes
+  type: http
+  seq: 2
+  tags:
+    - Clientes
+
+http:
+  method: POST
+  url: https://localhost:7180/api/Clientes
+  body:
+    type: json
+    data: |-
+      {
+        "dni": "40999888",
+        "nombre": "Ana",
+        "apellido": "Maria",
+        "telefono": "3834555666",
+        "email": "ana@gmail.com",
+        "direccion": "Calle Falsa 456",
+        "categoria": "VIP"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Clientes"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "dni": "",
+            "nombre": "",
+            "apellido": "",
+            "telefono": "",
+            "email": "",
+            "direccion": "",
+            "categoria": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

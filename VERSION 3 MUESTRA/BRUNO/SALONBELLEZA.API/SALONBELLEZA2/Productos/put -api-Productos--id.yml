@@ -1,0 +1,65 @@
+info:
+  name: put /api/Productos/:id
+  type: http
+  seq: 4
+  tags:
+    - Productos
+
+http:
+  method: PUT
+  url: https://localhost:7180/api/Productos/:id
+  params:
+    - name: id
+      value: ""
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "idProducto": 0,
+        "idCategoriaProducto": 0,
+        "codigo": "",
+        "nombre": "",
+        "descripcion": "",
+        "precioCosto": 0,
+        "precioVenta": 0,
+        "stockMinimo": 0
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Productos/:id"
+      method: PUT
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "idProducto": 0,
+            "idCategoriaProducto": 0,
+            "codigo": "",
+            "nombre": "",
+            "descripcion": "",
+            "precioCosto": 0,
+            "precioVenta": 0,
+            "stockMinimo": 0
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

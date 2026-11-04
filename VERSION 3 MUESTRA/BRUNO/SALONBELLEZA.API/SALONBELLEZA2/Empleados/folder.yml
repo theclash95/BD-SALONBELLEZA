@@ -1,0 +1,6 @@
+info:
+  name: Empleados
+  type: folder
+
+request:
+  auth: inherit

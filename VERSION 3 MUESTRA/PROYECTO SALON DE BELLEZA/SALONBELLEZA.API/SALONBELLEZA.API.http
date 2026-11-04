@@ -1,0 +1,32 @@
+@SALONBELLEZA_API_HostAddress = http://localhost:5180
+
+GET {{SALONBELLEZA_API_HostAddress}}/api/salon/estado
+Accept: application/json
+
+###
+
+POST {{SALONBELLEZA_API_HostAddress}}/api/salon/clientes
+Content-Type: application/json
+
+{
+  "dni": "30111222",
+  "nombre": "Juan",
+  "apellido": "Perez",
+  "telefono": "3834000000",
+  "email": "juan@email.com",
+  "direccion": "Santa Maria",
+  "categoria": "REGULAR"
+}
+
+###
+
+POST {{SALONBELLEZA_API_HostAddress}}/api/salon/turnos
+Content-Type: application/json
+
+{
+  "idCliente": 1,
+  "idEmpleado": 1,
+  "fecha": "2026-10-10",
+  "hora": "15:30:00",
+  "observacion": "Turno de prueba"
+}

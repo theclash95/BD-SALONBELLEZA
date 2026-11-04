@@ -1,0 +1,26 @@
+info:
+  name: REGISTRAR TURNO
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/turnos
+  body:
+    type: json
+    data: |-
+      {
+        "idCliente": 1,
+        "idEmpleado": 1,
+        "fecha": "2026-10-10",
+        "hora": "10:00:00",
+        "observacion": "Turno de prueba"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

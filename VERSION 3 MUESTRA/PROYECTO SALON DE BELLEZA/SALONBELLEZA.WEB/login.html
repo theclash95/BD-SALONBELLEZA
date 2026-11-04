@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#211c29"><title>Iniciar sesión | Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body data-page="login">
+  <section class="login-screen" id="login-screen">
+    <div class="login-art">
+      <div class="login-art-overlay"></div>
+      <div class="login-brand"><span class="login-brand-mark">a.</span><span>ATELIER<small>BARBER CLUB</small></span></div>
+      <div class="login-editorial">
+        <span class="login-kicker">TU ESPACIO · TU ESTILO</span>
+        <h1>La barbería<br>también está<br>en los detalles.</h1>
+        <p>Una gestión simple, elegante y organizada para que puedas enfocarte en lo más importante: tus clientes.</p>
+      </div>
+      <div class="login-art-footer">BARBERÍA PROFESIONAL <span>—</span> SISTEMA DE GESTIÓN</div>
+    </div>
+    <div class="login-side">
+      <div class="login-mobile-brand"><span class="login-brand-mark">a.</span><span>ATELIER</span></div>
+      <form class="login-card" id="login-form">
+        <div class="login-welcome">BIENVENIDO/A</div>
+        <h2>Iniciar sesión</h2>
+        <p class="login-subtitle">Ingresá tus credenciales para acceder al panel de gestión.</p>
+        <label class="login-field"><span>USUARIO O CORREO</span><div class="login-input"><span>✉</span><input id="login-user" autocomplete="username" placeholder="Tu usuario" required></div></label>
+        <label class="login-field"><span>CONTRASEÑA</span><div class="login-input"><span>⌑</span><input id="login-password" type="password" autocomplete="current-password" placeholder="Tu contraseña" required><button type="button" id="toggle-password" aria-label="Mostrar contraseña">◉</button></div></label>
+        <div class="login-error" id="login-error" aria-live="polite"></div>
+        <button class="login-submit" type="submit">Ingresar al sistema <span>→</span></button>
+        <div class="login-demo"><b>Acceso de demostración</b><span>Usuario: <code>admin@atelier.com</code></span><span>Contraseña: <code>Atelier2026!</code></span></div>
+        <div class="login-legal">Acceso de demostración local. La autenticación definitiva debe validarse en el backend.</div>
+      </form>
+      <div class="login-copyright">© 2026 ATELIER BARBER CLUB</div>
+    </div>
+  </section>
+<script src="login.js"></script></body></html>

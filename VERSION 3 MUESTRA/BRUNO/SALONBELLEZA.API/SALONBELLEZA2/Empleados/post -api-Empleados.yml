@@ -1,0 +1,55 @@
+info:
+  name: post /api/Empleados
+  type: http
+  seq: 2
+  tags:
+    - Empleados
+
+http:
+  method: POST
+  url: https://localhost:7180/api/Empleados
+  body:
+    type: json
+    data: |-
+      {
+        "dni": "30111222",
+        "nombre": "Carlos",
+        "apellido": "Peluquero",
+        "telefono": "3834000111",
+        "email": "carlos@salon.com",
+        "direccion": "Av. Siempre Viva 123",
+        "tipoEmpleado": "PROFESIONAL"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Empleados"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "dni": "",
+            "nombre": "",
+            "apellido": "",
+            "telefono": "",
+            "email": "",
+            "direccion": "",
+            "tipoEmpleado": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""

@@ -1,0 +1,26 @@
+info:
+  name: REGISTRAR PROVEEDOR
+  type: http
+  seq: 13
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/proveedores
+  body:
+    type: json
+    data: |-
+      {
+        "razonSocial": "Distribuidora Belleza SRL",
+        "cuit": "30-71234567-8",
+        "telefono": "3834123456",
+        "email": "distribuidora@gmail.com",
+        "direccion": "Santa María"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

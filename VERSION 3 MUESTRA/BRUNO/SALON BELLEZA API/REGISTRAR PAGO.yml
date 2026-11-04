@@ -1,0 +1,25 @@
+info:
+  name: REGISTRAR PAGO
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: https://localhost:7180/api/salon/pagos
+  body:
+    type: json
+    data: |-
+      {
+        "idVenta": 1,
+        "monto": 10000,
+        "metodoPago": "EFECTIVO",
+        "referencia": "Pago del turno 1"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

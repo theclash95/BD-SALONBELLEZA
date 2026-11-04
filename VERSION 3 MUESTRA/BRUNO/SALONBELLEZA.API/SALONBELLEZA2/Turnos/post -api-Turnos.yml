@@ -1,0 +1,51 @@
+info:
+  name: post /api/Turnos
+  type: http
+  seq: 2
+  tags:
+    - Turnos
+
+http:
+  method: POST
+  url: https://localhost:7180/api/Turnos
+  body:
+    type: json
+    data: |-
+      {
+        "idCliente": 1,
+        "idEmpleado": 1,
+        "fecha": "2026-11-15",
+        "hora": "10:30:00",
+        "observacion": "Turno de prueba en Swagger"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/api/Turnos"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "idCliente": 0,
+            "idEmpleado": 0,
+            "fecha": "",
+            "hora": "",
+            "observacion": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      body:
+        type: text
+        data: ""
